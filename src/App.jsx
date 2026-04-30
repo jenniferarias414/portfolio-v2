@@ -364,7 +364,7 @@ function Projects() {
 
     if (filtered.length === 0) return undefined;
 
-    const getPeekDelay = () => 55000 + Math.random() * 20000;
+    const getPeekDelay = () => 45000 + Math.random() * 10000;
 
     const showPeek = () => {
       const edgeIndexes = [...new Set([0, Math.min(filtered.length - 1, 2), filtered.length - 1])];
@@ -373,7 +373,7 @@ function Projects() {
 
       return window.setTimeout(() => {
         setPeekProject(null);
-      }, 2000);
+      }, 3000);
     };
 
     let hideTimer;
@@ -445,8 +445,8 @@ function Projects() {
                   >
                     <span className="absolute -left-px top-px h-2 w-2 -rotate-12 rounded-sm bg-[#8d7656]" />
                     <span className="absolute right-0.5 top-px h-2 w-2 rotate-12 rounded-sm bg-[#8d7656]" />
-                    <span className="absolute left-1.5 top-2.5 h-1 w-0.5 rounded-full bg-stone-800 [animation:blink_2s_ease-in-out_0.45s_1]" />
-                    <span className="absolute right-1.5 top-2.5 h-1 w-0.5 rounded-full bg-stone-800 [animation:blink_2s_ease-in-out_0.45s_1]" />
+                    <span className="absolute left-1.5 top-2.5 h-1 w-0.5 rounded-full bg-stone-800 [animation:blink_1.4s_ease-in-out_0.75s_1]" />
+                    <span className="absolute right-1.5 top-2.5 h-1 w-0.5 rounded-full bg-stone-800 [animation:blink_1.4s_ease-in-out_0.75s_1]" />
                     <span className="absolute left-1/2 top-[0.9rem] h-0.5 w-0.5 -translate-x-1/2 rounded-full bg-stone-700" />
                   </motion.div>
                 )}

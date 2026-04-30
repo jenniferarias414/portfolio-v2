@@ -13,13 +13,14 @@ body {
 
 @keyframes blink {
   0%,
-  88%,
+  42%,
+  72%,
   100% {
     transform: scaleY(1);
   }
 
-  92%,
-  96% {
-    transform: scaleY(0.15);
+  52%,
+  62% {
+    transform: scaleY(0.08);
   }
 }
