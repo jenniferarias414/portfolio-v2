@@ -15,6 +15,9 @@ import {
   Sparkles,
 } from "lucide-react";
 
+const githubUrl = "https://github.com/jenniferarias414";
+const linkedinUrl = "https://www.linkedin.com/in/jennifer-arias-427851289/";
+
 const projects = [
   {
     title: "Baggage Claim SQL Lineage Tool",
@@ -22,7 +25,7 @@ const projects = [
     summary:
       "Streamlit app that parses airline baggage-claims SQL and maps output columns back to source tables and columns for lineage and governance.",
     tags: ["Python", "Streamlit", "SQLGlot", "pandas", "SQL Lineage"],
-    github: "#",
+    github: githubUrl,
     caseStudy: "#",
   },
   {
@@ -31,7 +34,7 @@ const projects = [
     summary:
       "Collection of Python automation projects covering files, regex, Excel reports, JSON conversion, scheduling, email alerts, and web scraping.",
     tags: ["Python", "Automation", "ETL", "SMTP", "Web Scraping"],
-    github: "#",
+    github: githubUrl,
     caseStudy: "#",
   },
   {
@@ -40,7 +43,7 @@ const projects = [
     summary:
       "Analytics engineering projects focused on transforming raw data into modeled, tested, analytics-ready datasets.",
     tags: ["dbt", "SQL", "Data Modeling", "Testing"],
-    github: "#",
+    github: githubUrl,
     caseStudy: "#",
   },
   {
@@ -49,7 +52,7 @@ const projects = [
     summary:
       "Databricks project demonstrating Delta Lake versioning, time travel, schema evolution, and merge operations.",
     tags: ["Databricks", "Delta Lake", "PySpark", "Lakehouse"],
-    github: "#",
+    github: githubUrl,
     caseStudy: "#",
   },
   {
@@ -58,7 +61,7 @@ const projects = [
     summary:
       "PySpark analysis project using joins, aggregations, and ranking logic to analyze customer transaction data.",
     tags: ["PySpark", "Databricks", "Analytics", "SQL"],
-    github: "#",
+    github: githubUrl,
     caseStudy: "#",
   },
   {
@@ -67,7 +70,7 @@ const projects = [
     summary:
       "Python web ingestion project that scrapes a practice website, parses HTML with XPath, and exports structured CSV/report outputs.",
     tags: ["requests", "lxml", "pandas", "XPath", "ETL"],
-    github: "#",
+    github: githubUrl,
     caseStudy: "#",
   },
 ];
@@ -93,12 +96,16 @@ const notes = [
   },
 ];
 
-const skillGroups = [
-  { title: "Languages", skills: ["Python", "SQL", "JavaScript"] },
-  { title: "Data Engineering", skills: ["PySpark", "Databricks", "Delta Lake", "dbt"] },
-  { title: "Cloud & Tools", skills: ["AWS", "GitHub", "GitLab", "VS Code"] },
-  { title: "Automation & Apps", skills: ["Streamlit", "APIs", "Web Scraping", "Email Automation"] },
-  { title: "Foundations", skills: ["HTML", "CSS", "React", "Agile"] },
+const toolkitItems = [
+  { name: "Python", logo: "python" },
+  { name: "SQL", logo: "sql" },
+  { name: "PySpark", logo: "spark" },
+  { name: "Databricks", logo: "databricks" },
+  { name: "dbt", logo: "dbt" },
+  { name: "AWS", logo: "aws" },
+  { name: "Git", logo: "git" },
+  { name: "Docker", logo: "docker" },
+  { name: "React", logo: "react" },
 ];
 
 const categories = ["All", "Data Engineering", "AI + Automation", "Analytics Engineering", "Apps + Tools"];
@@ -113,7 +120,95 @@ function SectionHeader({ eyebrow, title, children }) {
   );
 }
 
+function TechnologyLogo({ logo }) {
+  const base = "h-7 w-7";
+
+  switch (logo) {
+    case "python":
+      return (
+        <svg viewBox="0 0 48 48" className={base} aria-hidden="true">
+          <path fill="#386d8f" d="M23.9 5c-8.1 0-7.6 3.5-7.6 3.5v3.7H24v1.1H13.2S6 12.5 6 20.9c0 8.3 6.3 8 6.3 8h3.8v-5.3s-.2-6.3 6.2-6.3h7.5s5.9.1 5.9-5.7V8.5S36.6 5 23.9 5Zm-4.2 3.3a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z" />
+          <path fill="#d2a83f" d="M24.1 43c8.1 0 7.6-3.5 7.6-3.5v-3.7H24v-1.1h10.8s7.2.8 7.2-7.6c0-8.3-6.3-8-6.3-8h-3.8v5.3s.2 6.3-6.2 6.3h-7.5s-5.9-.1-5.9 5.7v3.1s-.9 3.5 11.8 3.5Zm4.2-3.3a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z" />
+        </svg>
+      );
+    case "sql":
+      return (
+        <svg viewBox="0 0 48 48" className={base} aria-hidden="true">
+          <ellipse cx="24" cy="11" rx="15" ry="6" fill="#0f766e" opacity="0.9" />
+          <path fill="#0f766e" opacity="0.78" d="M9 11v22c0 3.3 6.7 6 15 6s15-2.7 15-6V11c0 3.3-6.7 6-15 6S9 14.3 9 11Z" />
+          <path fill="none" stroke="#f7f3ea" strokeWidth="2" d="M9 22c0 3.3 6.7 6 15 6s15-2.7 15-6" opacity="0.8" />
+        </svg>
+      );
+    case "spark":
+      return (
+        <svg viewBox="0 0 48 48" className={base} aria-hidden="true">
+          <path fill="#d17c2d" d="m24 5 4.2 12.5L41 13.8 32.5 24 41 34.2l-12.8-3.7L24 43l-4.2-12.5L7 34.2 15.5 24 7 13.8l12.8 3.7L24 5Z" opacity="0.9" />
+          <path fill="#f7f3ea" d="m24 17 2 5.1 5.4 1.9-5.4 1.9-2 5.1-2-5.1-5.4-1.9 5.4-1.9 2-5.1Z" />
+        </svg>
+      );
+    case "databricks":
+      return (
+        <svg viewBox="0 0 48 48" className={base} aria-hidden="true">
+          <path fill="none" stroke="#c95f45" strokeWidth="3" strokeLinejoin="round" d="M24 7 7 16l17 9 17-9-17-9Z" />
+          <path fill="none" stroke="#c95f45" strokeWidth="3" strokeLinejoin="round" d="m7 24 17 9 17-9M7 32l17 9 17-9" opacity="0.72" />
+        </svg>
+      );
+    case "dbt":
+      return (
+        <svg viewBox="0 0 48 48" className={base} aria-hidden="true">
+          <path
+            fill="#d9785f"
+            d="M9.6 7.5c2.7-1.6 5.7-1.4 8.5.4l11.7 7.4a10.8 10.8 0 0 1 4.3 5.2L39 17c2.8-1.8 5.8-2 8.5-.4 2.8 1.6 3.6 5.2 1.8 8l-6.1 9.8a12.2 12.2 0 0 0 0 13l6.1 9.8c1.8 2.8 1 6.4-1.8 8-2.7 1.6-5.7 1.4-8.5-.4L27.3 57.4a10.8 10.8 0 0 1-4.3-5.2L18.1 55c-2.8 1.8-5.8 2-8.5.4-2.8-1.6-3.6-5.2-1.8-8l6.1-9.8a12.2 12.2 0 0 0 0-13L7.8 14.7c-1.8-2.8-1-6.4 1.8-7.2Z"
+            opacity="0.92"
+            transform="translate(0 1) scale(.72)"
+          />
+          <rect x="20.5" y="20.5" width="7" height="7" rx="1.8" fill="#f7f3ea" transform="rotate(45 24 24)" />
+        </svg>
+      );
+    case "aws":
+      return (
+        <svg viewBox="0 0 48 48" className={base} aria-hidden="true">
+          <text x="3.5" y="27" fill="#0f172a" fontSize="20" fontWeight="800" fontFamily="Arial, sans-serif">aws</text>
+          <path fill="none" stroke="#a86618" strokeLinecap="round" strokeWidth="3.4" d="M8 33c8.8 5.8 22.2 5.8 31-1" />
+          <path fill="#a86618" d="m38 28.5 4.8 2.3-3.6 4.7-.9-3.6-3.7-.8 3.4-2.6Z" />
+        </svg>
+      );
+    case "git":
+      return (
+        <svg viewBox="0 0 48 48" className={base} aria-hidden="true">
+          <rect x="10" y="10" width="28" height="28" rx="4" fill="#d76545" transform="rotate(45 24 24)" opacity="0.9" />
+          <path fill="none" stroke="#fff" strokeLinecap="round" strokeWidth="3" d="M18 18 30 30M22 22h7" />
+          <circle cx="18" cy="18" r="2.5" fill="#fff" />
+          <circle cx="30" cy="30" r="2.5" fill="#fff" />
+          <circle cx="29" cy="22" r="2.5" fill="#fff" />
+        </svg>
+      );
+    case "docker":
+      return (
+        <svg viewBox="0 0 48 48" className={base} aria-hidden="true">
+          <g transform="translate(-2 -2) scale(1.1)">
+            <path fill="#2879a8" d="M12 22h5v5h-5v-5Zm6 0h5v5h-5v-5Zm6 0h5v5h-5v-5Zm-6-6h5v5h-5v-5Zm6 0h5v5h-5v-5Zm6 6h5v5h-5v-5Z" opacity="0.9" />
+            <path fill="#2879a8" d="M7 28h31c-.8 5.7-5.4 10-13.8 10H20C13.3 38 8.5 34.7 7 28Z" opacity="0.9" />
+            <path fill="#2879a8" d="M38 24c2 0 3.4 1 4 2.5-1.3.8-2.8 1.2-4.7 1.1.5-1 .7-2.2.7-3.6Z" opacity="0.75" />
+          </g>
+        </svg>
+      );
+    case "react":
+      return (
+        <svg viewBox="0 0 48 48" className={base} aria-hidden="true">
+          <circle cx="24" cy="24" r="3.5" fill="#2b9bb8" />
+          <ellipse cx="24" cy="24" rx="18" ry="7" fill="none" stroke="#2b9bb8" strokeWidth="2.5" />
+          <ellipse cx="24" cy="24" rx="18" ry="7" fill="none" stroke="#2b9bb8" strokeWidth="2.5" transform="rotate(60 24 24)" />
+          <ellipse cx="24" cy="24" rx="18" ry="7" fill="none" stroke="#2b9bb8" strokeWidth="2.5" transform="rotate(120 24 24)" />
+        </svg>
+      );
+    default:
+      return <Database className={base} aria-hidden="true" />;
+  }
+}
+
 function ButtonLink({ href, children, variant = "primary", icon: Icon }) {
+  const isExternal = href?.startsWith("http");
   const base =
     "inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2";
   const styles =
@@ -121,7 +216,7 @@ function ButtonLink({ href, children, variant = "primary", icon: Icon }) {
       ? "bg-stone-950 text-white shadow-lg shadow-stone-900/15 hover:-translate-y-0.5 hover:bg-emerald-900"
       : "border border-stone-300 bg-white/70 text-stone-900 hover:-translate-y-0.5 hover:border-emerald-700 hover:bg-emerald-50";
   return (
-    <a href={href} className={`${base} ${styles}`}>
+    <a href={href} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noreferrer" : undefined} className={`${base} ${styles}`}>
       {Icon && <Icon size={17} />}
       {children}
     </a>
@@ -178,8 +273,8 @@ function Hero() {
           <div className="mt-9 flex flex-wrap gap-3">
             <ButtonLink href="#projects" icon={Database}>View Projects</ButtonLink>
             <ButtonLink href="#" variant="secondary" icon={FileText}>Download Resume</ButtonLink>
-            <ButtonLink href="#" variant="secondary" icon={GitBranch}>GitHub</ButtonLink>
-            <ButtonLink href="#" variant="secondary" icon={BriefcaseBusiness}>LinkedIn</ButtonLink>
+            <ButtonLink href={githubUrl} variant="secondary" icon={GitBranch}>GitHub</ButtonLink>
+            <ButtonLink href={linkedinUrl} variant="secondary" icon={BriefcaseBusiness}>LinkedIn</ButtonLink>
           </div>
         </motion.div>
 
@@ -375,7 +470,7 @@ function Projects() {
                 <a href={project.caseStudy} className="inline-flex items-center gap-1.5 rounded-full border border-emerald-900/20 bg-emerald-900 px-3 py-1 text-sm font-semibold leading-5 text-white shadow-[0_2px_6px_rgba(6,78,59,0.10)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-stone-950 hover:shadow-sm hover:shadow-stone-900/10">
                   Case Study <ArrowUpRight size={14} />
                 </a>
-                <a href={project.github} className="inline-flex items-center gap-2 px-1 py-2 text-sm font-semibold text-stone-500 transition-colors duration-200 hover:text-emerald-900">
+                <a href={project.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-1 py-2 text-sm font-semibold text-stone-500 transition-colors duration-200 hover:text-emerald-900">
                   GitHub <ArrowUpRight size={15} />
                 </a>
               </div>
@@ -391,20 +486,21 @@ function Skills() {
   return (
     <section id="skills" className="bg-white/55 px-5 py-24 md:px-8">
       <SectionHeader eyebrow="Toolkit" title="Technical Toolkit">
-        Skills grouped by workflow, from core languages to data engineering systems and automation tools.
+        A focused core stack for data pipelines, analytics workflows, cloud delivery, and modern front-end work.
       </SectionHeader>
-      <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-5">
-        {skillGroups.map((group) => (
-          <div key={group.title} className="rounded-3xl border border-stone-200 bg-cream p-5">
-            <h3 className="font-semibold text-stone-950">{group.title}</h3>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {group.skills.map((skill) => (
-                <span key={skill} className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-stone-700 shadow-sm">
-                  {skill}
-                </span>
-              ))}
+      <div className="mx-auto grid max-w-5xl grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-9">
+        {toolkitItems.map(({ name, logo }) => (
+          <motion.div
+            key={name}
+            whileHover={{ y: -4 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            className="group flex min-h-28 flex-col items-center justify-center rounded-2xl border border-stone-200 bg-white/70 px-4 py-5 text-center shadow-sm transition-all duration-200 hover:border-emerald-800/30 hover:bg-white hover:shadow-xl hover:shadow-emerald-950/5"
+          >
+            <div className="flex h-12 w-12 items-center justify-center rounded-full border border-emerald-900/10 bg-cream/80 text-emerald-900 transition-all duration-200 group-hover:border-emerald-800/25 group-hover:bg-emerald-50 group-hover:shadow-sm group-hover:shadow-emerald-950/10">
+              <TechnologyLogo logo={logo} />
             </div>
-          </div>
+            <p className="mt-3 text-sm font-semibold text-stone-800">{name}</p>
+          </motion.div>
         ))}
       </div>
     </section>
@@ -517,9 +613,9 @@ function Contact() {
             I’m open to data engineering, analytics engineering, and AI-enabled automation opportunities.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <ButtonLink href="#" variant="secondary" icon={GitBranch}>GitHub</ButtonLink>
-            <ButtonLink href="#" variant="secondary" icon={BriefcaseBusiness}>LinkedIn</ButtonLink>
-            <ButtonLink href="mailto:hello@example.com" variant="secondary" icon={Mail}>Email</ButtonLink>
+            <ButtonLink href={githubUrl} variant="secondary" icon={GitBranch}>GitHub</ButtonLink>
+            <ButtonLink href={linkedinUrl} variant="secondary" icon={BriefcaseBusiness}>LinkedIn</ButtonLink>
+            <ButtonLink href="mailto:jenniferarias414@gmail.com" variant="secondary" icon={Mail}>Email</ButtonLink>
           </div>
         </div>
         <form className="rounded-3xl border border-white/70 bg-white/95 p-6 text-stone-950 shadow-xl shadow-black/10 md:p-7">
