@@ -296,7 +296,7 @@ function Hero() {
             <div className="rounded-[1.5rem] bg-gradient-to-br from-emerald-50 via-stone-100 to-white p-6">
               <div className="mx-auto flex aspect-square max-w-xs items-center justify-center overflow-hidden rounded-full border-8 border-white bg-stone-200 shadow-inner">
                 <img
-                  src="/headshot.png"
+                  src={`${import.meta.env.BASE_URL}headshot.png`}
                   alt="Jenny Arias"
                   className="h-full w-full object-cover object-center"
                 />
