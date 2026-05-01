@@ -38,7 +38,7 @@ The goal was to create a site that feels:
 - Calm
 - Modern
 - Warm
-- Recruiter/Tech/Business/Layman-friendly
+- Recruiter-friendly
 - Technical without feeling overly flashy
 
 The design uses a cream, charcoal, and emerald palette with subtle animations and polished project cards.
@@ -63,9 +63,10 @@ The design uses a cream, charcoal, and emerald palette with subtle animations an
 - Certifications and training section
 - Technical notes preview section
 - Contact section
+- Working GitHub / LinkedIn / Email links
 - Custom responsive favicon
 - GitHub Pages deployment
-- Small hidden woodland creature easter egg for subtle personality
+- Hidden woodland creature easter egg for subtle personality
 
 ---
 
@@ -80,25 +81,41 @@ The current version includes:
 - About section
 - Certifications
 - Technical notes preview
-- Contact form UI
-- Custom favicon
+- Contact section with active external links
+- Custom favicon with light/dark theme support
 - Live GitHub Pages deployment
+
+---
+
+## Current Link Status
+
+### Active Links
+
+- GitHub buttons connect to GitHub profile
+- LinkedIn buttons connect to LinkedIn profile
+- Email button opens direct email contact
+- Portfolio is live on GitHub Pages
+
+### Temporary Placeholder Behavior
+
+Some project card GitHub buttons currently route to the main GitHub profile while repositories are being finalized.
+
+These will be updated to point to each project’s individual repository as projects are polished and expanded.
 
 ---
 
 ## Planned Improvements
 
+- Update each project card to its specific GitHub repository
 - Add real case study pages for featured projects
-- Connect project buttons to GitHub repositories
+- Add project screenshots and walkthroughs
 - Connect contact form to a working email service
 - Improve mobile responsiveness and spacing
 - Add real technical notes/blog posts
 - Add downloadable resume
-- Add project screenshots
 - Refine accessibility and metadata
-- Replace placeholder links
 - Continue polishing the woodland creature easter egg
-- Consider adding light/dark mode support later
+- Add additional polished project repos (Docker, AWS, dbt, etc.)
 
 ---
 
@@ -151,7 +168,7 @@ This site is deployed with GitHub Pages.
 npm run deploy
 ```
 
-After deployment, commit any source changes to `main`:
+After deployment, commit source changes to `main`:
 
 ```bash
 git add .
@@ -163,4 +180,4 @@ git push origin main
 
 ## Status
 
-This portfolio is actively being improved as I continue building data engineering projects, technical notes, and project case studies.
+This portfolio is actively being improved as I continue building data engineering projects, technical notes, case studies, and stronger repository-backed portfolio proof.
