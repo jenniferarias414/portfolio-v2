@@ -6,9 +6,15 @@ Modern personal portfolio built with React, Vite, and Tailwind CSS to showcase m
 
 [View Portfolio](https://jenniferarias414.github.io/portfolio-v2/)
 
+---
+
 ## Overview
 
-This portfolio highlights my work in:
+This portfolio was created as a professional home base for my data engineering work, technical projects, certifications, and learning notes.
+
+The goal is to present a clean, polished, and modern portfolio that reflects both technical skill and communication ability.
+
+This site highlights work in:
 
 - Data engineering
 - Python automation
@@ -16,8 +22,28 @@ This portfolio highlights my work in:
 - Databricks / PySpark projects
 - AWS and cloud-focused learning
 - Technical documentation and project writeups
+- AI-assisted learning and development workflows
 
-The goal of this site is to provide a clean, professional overview of my technical growth, project work, and career direction.
+---
+
+## Design Direction
+
+The visual direction for this portfolio is:
+
+**Executive Clean + Modern Intelligence**
+
+The goal was to create a site that feels:
+
+- Professional
+- Calm
+- Modern
+- Warm
+- Recruiter/Tech/Business/Layman-friendly
+- Technical without feeling overly flashy
+
+The design uses a cream, charcoal, and emerald palette with subtle animations and polished project cards.
+
+---
 
 ## Tech Stack
 
@@ -27,15 +53,72 @@ The goal of this site is to provide a clean, professional overview of my technic
 - JavaScript
 - GitHub Pages
 
+---
+
 ## Features
 
 - Responsive single-page portfolio
 - Featured project cards with filtering
-- Technical toolkit section
+- Technical toolkit with recognizable technology icons
 - Certifications and training section
-- Technical notes preview
+- Technical notes preview section
 - Contact section
-- Custom favicon and personal branding
+- Custom responsive favicon
+- GitHub Pages deployment
+- Small hidden woodland creature easter egg for subtle personality
+
+---
+
+## Current MVP
+
+The current version includes:
+
+- Hero section with personal branding
+- Value proposition cards
+- Featured projects section
+- Technical toolkit
+- About section
+- Certifications
+- Technical notes preview
+- Contact form UI
+- Custom favicon
+- Live GitHub Pages deployment
+
+---
+
+## Planned Improvements
+
+- Add real case study pages for featured projects
+- Connect project buttons to GitHub repositories
+- Connect contact form to a working email service
+- Improve mobile responsiveness and spacing
+- Add real technical notes/blog posts
+- Add downloadable resume
+- Add project screenshots
+- Refine accessibility and metadata
+- Replace placeholder links
+- Continue polishing the woodland creature easter egg
+- Consider adding light/dark mode support later
+
+---
+
+## Project Evolution Notes
+
+This portfolio started as a redesign of an older HTML/CSS portfolio.
+
+The new version was planned around a stronger data engineering brand, with a focus on:
+
+- Data pipelines
+- Automation
+- Analytics engineering
+- Cloud tools
+- AI-assisted development
+- Clear documentation
+- Professional storytelling
+
+The project direction was intentionally chosen to avoid feeling like a generic front-end portfolio. Instead, the site is designed to support a data engineering career path while still showing modern UI skills and personal polish.
+
+---
 
 ## Run Locally
 
@@ -58,6 +141,8 @@ Run the development server:
 npm run dev
 ```
 
+---
+
 ## Deploy
 
 This site is deployed with GitHub Pages.
@@ -66,6 +151,16 @@ This site is deployed with GitHub Pages.
 npm run deploy
 ```
 
+After deployment, commit any source changes to `main`:
+
+```bash
+git add .
+git commit -m "Update portfolio"
+git push origin main
+```
+
+---
+
 ## Status
 
-This portfolio is actively being improved as I continue building data engineering projects and refining my technical brand.
+This portfolio is actively being improved as I continue building data engineering projects, technical notes, and project case studies.
