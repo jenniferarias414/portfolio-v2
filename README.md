@@ -1,16 +1,71 @@
-# React + Vite
+# Jenny Arias | Data Engineering Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Modern personal portfolio built with React, Vite, and Tailwind CSS to showcase my data engineering projects, technical notes, certifications, and AI-enabled learning/building work.
 
-Currently, two official plugins are available:
+## Live Site
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+[View Portfolio](https://jenniferarias414.github.io/portfolio-v2/)
 
-## React Compiler
+## Overview
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This portfolio highlights my work in:
 
-## Expanding the ESLint configuration
+- Data engineering
+- Python automation
+- SQL and analytics engineering
+- Databricks / PySpark projects
+- AWS and cloud-focused learning
+- Technical documentation and project writeups
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The goal of this site is to provide a clean, professional overview of my technical growth, project work, and career direction.
+
+## Tech Stack
+
+- React
+- Vite
+- Tailwind CSS
+- JavaScript
+- GitHub Pages
+
+## Features
+
+- Responsive single-page portfolio
+- Featured project cards with filtering
+- Technical toolkit section
+- Certifications and training section
+- Technical notes preview
+- Contact section
+- Custom favicon and personal branding
+
+## Run Locally
+
+Clone the repository:
+
+```bash
+git clone https://github.com/jenniferarias414/portfolio-v2.git
+cd portfolio-v2
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+## Deploy
+
+This site is deployed with GitHub Pages.
+
+```bash
+npm run deploy
+```
+
+## Status
+
+This portfolio is actively being improved as I continue building data engineering projects and refining my technical brand.
