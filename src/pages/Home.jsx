@@ -28,7 +28,7 @@ const projects = [
     summary:
       "Streamlit app that parses airline baggage-claims SQL and maps output columns back to source tables and columns for lineage and governance.",
     tags: ["Python", "Streamlit", "SQLGlot", "pandas", "SQL Lineage"],
-    github: githubUrl,
+    github: "https://github.com/jenniferarias414/python-automation-labs/tree/main/08_baggage_claim_sql_lineage_tool",
   },
   {
     title: "Retail Data Lake System Design",
@@ -45,7 +45,7 @@ const projects = [
     summary:
       "Collection of Python automation projects covering files, regex, Excel reports, JSON conversion, scheduling, email alerts, and web scraping.",
     tags: ["Python", "Automation", "ETL", "SMTP", "Web Scraping"],
-    github: githubUrl,
+    github: "https://github.com/jenniferarias414/python-automation-labs/tree/main",
   },
   {
     title: "dbt Data Projects",
@@ -53,7 +53,7 @@ const projects = [
     summary:
       "Analytics engineering projects focused on transforming raw data into modeled, tested, analytics-ready datasets.",
     tags: ["dbt", "SQL", "Data Modeling", "Testing"],
-    github: githubUrl,
+    github: "https://github.com/jenniferarias414/dbt-data-projects",
   },
   {
     title: "Delta Lake Fundamentals Lab",
@@ -61,7 +61,7 @@ const projects = [
     summary:
       "Databricks project demonstrating Delta Lake versioning, time travel, schema evolution, and merge operations.",
     tags: ["Databricks", "Delta Lake", "PySpark", "Lakehouse"],
-    github: githubUrl,
+    github: "https://github.com/jenniferarias414/delta-lake-fundamentals-lab",
   },
   {
     title: "Databricks Customer Analysis",
@@ -69,7 +69,7 @@ const projects = [
     summary:
       "PySpark analysis project using joins, aggregations, and ranking logic to analyze customer transaction data.",
     tags: ["PySpark", "Databricks", "Analytics", "SQL"],
-    github: githubUrl,
+    github: "https://github.com/jenniferarias414/databricks-pyspark-customer-analysis",
   },
   {
     title: "Bookstore Web Data Pipeline",
@@ -77,7 +77,7 @@ const projects = [
     summary:
       "Python web ingestion project that scrapes a practice website, parses HTML with XPath, and exports structured CSV/report outputs.",
     tags: ["requests", "lxml", "pandas", "XPath", "ETL"],
-    github: githubUrl,
+    github: "https://github.com/jenniferarias414/python-automation-labs/tree/main/09_bookstore_web_data_pipeline",
   },
 ];
 
