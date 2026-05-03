@@ -1,10 +1,11 @@
-import { useForm, ValidationError } from "@formspree/react";
+import { useForm } from "@formspree/react";
 import React, { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   ArrowUpRight,
   BriefcaseBusiness,
+  CheckCircle2,
   Mail,
   FileText,
   Database,
@@ -116,6 +117,28 @@ const toolkitItems = [
 ];
 
 const categories = ["All", "Data Engineering", "AI + Automation", "Analytics Engineering", "Apps + Tools"];
+const initialContactForm = { name: "", email: "", message: "", _gotcha: "" };
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function validateContactForm(values) {
+  const errors = {};
+
+  if (!values.name.trim()) {
+    errors.name = "Please enter your name.";
+  }
+
+  if (!emailPattern.test(values.email.trim())) {
+    errors.email = "Please enter a valid email address.";
+  }
+
+  if (!values.message.trim()) {
+    errors.message = "Please enter a message.";
+  } else if (values.message.trim().length < 10) {
+    errors.message = "Please enter a message with at least 10 characters.";
+  }
+
+  return errors;
+}
 
 function SectionHeader({ eyebrow, title, children }) {
   return (
@@ -612,7 +635,54 @@ function Notes() {
 }
 
 function Contact() {
-  const [state, handleSubmit] = useForm("xgodawlo");
+  const [state, submitForm, resetForm] = useForm("xgodawlo");
+  const [formValues, setFormValues] = useState(initialContactForm);
+  const [touched, setTouched] = useState({});
+  const [submitAttempted, setSubmitAttempted] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
+
+  const validationErrors = validateContactForm(formValues);
+  const shouldShowError = (field) => Boolean((submitAttempted || touched[field]) && validationErrors[field]);
+  const inputClass = (field) =>
+    `rounded-2xl border bg-white/90 px-4 py-3 outline-none transition focus:ring-2 ${
+      shouldShowError(field)
+        ? "border-red-300 focus:border-red-500 focus:ring-red-900/10"
+        : "border-stone-200 focus:border-emerald-700 focus:ring-emerald-900/10"
+    }`;
+
+  const handleFieldChange = (event) => {
+    const { name, value } = event.target;
+    setFormValues((current) => ({ ...current, [name]: value }));
+    if (submitError) setSubmitError(false);
+  };
+
+  const handleFieldBlur = (event) => {
+    setTouched((current) => ({ ...current, [event.target.name]: true }));
+  };
+
+  const handleContactSubmit = async (event) => {
+    event.preventDefault();
+    setSubmitAttempted(true);
+    setTouched({ name: true, email: true, message: true });
+
+    if (Object.keys(validateContactForm(formValues)).length > 0 || state.submitting) return;
+
+    setSubmitError(false);
+
+    try {
+      await submitForm(formValues);
+    } catch {
+      setSubmitError(true);
+    }
+  };
+
+  const handleSendAnotherMessage = () => {
+    resetForm();
+    setFormValues(initialContactForm);
+    setTouched({});
+    setSubmitAttempted(false);
+    setSubmitError(false);
+  };
 
   return (
     <section id="contact" className="px-5 py-24 md:px-8">
@@ -636,13 +706,28 @@ function Contact() {
             </div>
             <h3 className="mt-5 text-xl font-semibold tracking-tight text-stone-950">Message sent</h3>
             <p className="mt-3 text-base leading-7 text-stone-600">
-              Thanks — your message was sent successfully. I’ll get back to you soon.
+              Message sent successfully — thanks for reaching out! I’m excited to connect and will get back to you soon.
             </p>
+            <button
+              type="button"
+              onClick={handleSendAnotherMessage}
+              className="mt-6 inline-flex items-center justify-center rounded-full border border-emerald-900/20 bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-950 transition hover:border-emerald-800 hover:bg-emerald-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2"
+            >
+              Send another message
+            </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="rounded-3xl border border-white/70 bg-white/95 p-6 text-stone-950 shadow-xl shadow-black/10 md:p-7">
+          <form onSubmit={handleContactSubmit} noValidate className="rounded-3xl border border-white/70 bg-white/95 p-6 text-stone-950 shadow-xl shadow-black/10 md:p-7">
             <div className="grid gap-5">
-              <input type="text" name="_gotcha" className="hidden" tabIndex="-1" autoComplete="off" />
+              <input
+                type="text"
+                name="_gotcha"
+                value={formValues._gotcha}
+                onChange={handleFieldChange}
+                className="hidden"
+                tabIndex="-1"
+                autoComplete="off"
+              />
 
               <label htmlFor="contact-name" className="grid gap-2 text-sm font-semibold text-stone-800">
               Name
@@ -651,9 +736,19 @@ function Contact() {
                   name="name"
                   type="text"
                   required
-                  className="rounded-2xl border border-stone-200 bg-white/90 px-4 py-3 outline-none transition focus:border-emerald-700 focus:ring-2 focus:ring-emerald-900/10"
+                  value={formValues.name}
+                  onChange={handleFieldChange}
+                  onBlur={handleFieldBlur}
+                  aria-invalid={shouldShowError("name")}
+                  aria-describedby={shouldShowError("name") ? "contact-name-error" : undefined}
+                  className={inputClass("name")}
                   placeholder="Your name"
                 />
+                {shouldShowError("name") && (
+                  <span id="contact-name-error" className="text-sm font-medium text-red-700">
+                    {validationErrors.name}
+                  </span>
+                )}
               </label>
 
               <label htmlFor="contact-email" className="grid gap-2 text-sm font-semibold text-stone-800">
@@ -663,10 +758,19 @@ function Contact() {
                   name="email"
                   type="email"
                   required
-                  className="rounded-2xl border border-stone-200 bg-white/90 px-4 py-3 outline-none transition focus:border-emerald-700 focus:ring-2 focus:ring-emerald-900/10"
+                  value={formValues.email}
+                  onChange={handleFieldChange}
+                  onBlur={handleFieldBlur}
+                  aria-invalid={shouldShowError("email")}
+                  aria-describedby={shouldShowError("email") ? "contact-email-error" : undefined}
+                  className={inputClass("email")}
                   placeholder="you@example.com"
                 />
-                <ValidationError prefix="Email" field="email" errors={state.errors} className="text-sm font-medium text-red-700" />
+                {shouldShowError("email") && (
+                  <span id="contact-email-error" className="text-sm font-medium text-red-700">
+                    {validationErrors.email}
+                  </span>
+                )}
               </label>
 
               <label htmlFor="contact-message" className="grid gap-2 text-sm font-semibold text-stone-800">
@@ -675,15 +779,24 @@ function Contact() {
                   id="contact-message"
                   name="message"
                   required
-                  className="min-h-32 rounded-2xl border border-stone-200 bg-white/90 px-4 py-3 outline-none transition focus:border-emerald-700 focus:ring-2 focus:ring-emerald-900/10"
+                  value={formValues.message}
+                  onChange={handleFieldChange}
+                  onBlur={handleFieldBlur}
+                  aria-invalid={shouldShowError("message")}
+                  aria-describedby={shouldShowError("message") ? "contact-message-error" : undefined}
+                  className={`${inputClass("message")} min-h-32`}
                   placeholder="Tell me about the role or project..."
                 />
-                <ValidationError prefix="Message" field="message" errors={state.errors} className="text-sm font-medium text-red-700" />
+                {shouldShowError("message") && (
+                  <span id="contact-message-error" className="text-sm font-medium text-red-700">
+                    {validationErrors.message}
+                  </span>
+                )}
               </label>
 
-              {state.errors && state.errors.length > 0 && (
+              {(submitError || state.errors) && (
                 <p className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-800">
-                  Something went wrong. Please try again or email me directly.
+                  Something went wrong while sending your message. Please try again or email me directly.
                 </p>
               )}
 
