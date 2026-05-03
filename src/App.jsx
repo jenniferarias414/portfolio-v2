@@ -29,6 +29,15 @@ const projects = [
     caseStudy: "#",
   },
   {
+    title: "Retail Data Lake System Design",
+    category: "Data Engineering",
+    summary:
+      "AWS system design case study for a retail data lake modernization, including future-state architecture, requirement mapping, Terraform infrastructure, and a Lambda-based proof-of-concept for event validation and curated/error routing.",
+    tags: ["AWS", "Terraform", "Lambda", "S3", "CloudWatch", "System Design", "Data Lake", "PII Masking"],
+    github: "https://github.com/jenniferarias414/retail-data-lake-system-design/tree/main",
+    caseStudy: "#",
+  },
+  {
     title: "Python Automation Labs",
     category: "AI + Automation",
     summary:
