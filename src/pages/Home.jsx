@@ -1,3 +1,4 @@
+import { useForm, ValidationError } from "@formspree/react";
 import React, { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -611,6 +612,8 @@ function Notes() {
 }
 
 function Contact() {
+  const [state, handleSubmit] = useForm("xgodawlo");
+
   return (
     <section id="contact" className="px-5 py-24 md:px-8">
       <div className="mx-auto grid max-w-7xl gap-10 rounded-[2rem] border border-emerald-100/10 bg-[#10261d] p-8 text-white shadow-2xl shadow-emerald-950/10 md:grid-cols-[0.9fr_1.1fr] md:p-12 lg:p-14">
@@ -626,25 +629,74 @@ function Contact() {
             <ButtonLink href="mailto:jenniferarias414@gmail.com" variant="secondary" icon={Mail}>Email</ButtonLink>
           </div>
         </div>
-        <form className="rounded-3xl border border-white/70 bg-white/95 p-6 text-stone-950 shadow-xl shadow-black/10 md:p-7">
-          <div className="grid gap-5">
-            <label className="grid gap-2 text-sm font-semibold text-stone-800">
-              Name
-              <input className="rounded-2xl border border-stone-200 bg-white/90 px-4 py-3 outline-none transition focus:border-emerald-700 focus:ring-2 focus:ring-emerald-900/10" placeholder="Your name" />
-            </label>
-            <label className="grid gap-2 text-sm font-semibold text-stone-800">
-              Email
-              <input className="rounded-2xl border border-stone-200 bg-white/90 px-4 py-3 outline-none transition focus:border-emerald-700 focus:ring-2 focus:ring-emerald-900/10" placeholder="you@example.com" />
-            </label>
-            <label className="grid gap-2 text-sm font-semibold text-stone-800">
-              Message
-              <textarea className="min-h-32 rounded-2xl border border-stone-200 bg-white/90 px-4 py-3 outline-none transition focus:border-emerald-700 focus:ring-2 focus:ring-emerald-900/10" placeholder="Tell me about the role or project..." />
-            </label>
-            <button type="button" className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-emerald-900 px-5 py-3 text-sm font-semibold text-white shadow-sm shadow-emerald-950/10 transition hover:bg-[#10261d] hover:shadow-md">
-              Send Message <Send size={16} />
-            </button>
+        {state.succeeded ? (
+          <div className="rounded-3xl border border-white/70 bg-white/95 p-7 text-stone-950 shadow-xl shadow-black/10">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-emerald-50 text-emerald-900">
+              <CheckCircle2 size={22} />
+            </div>
+            <h3 className="mt-5 text-xl font-semibold tracking-tight text-stone-950">Message sent</h3>
+            <p className="mt-3 text-base leading-7 text-stone-600">
+              Thanks — your message was sent successfully. I’ll get back to you soon.
+            </p>
           </div>
-        </form>
+        ) : (
+          <form onSubmit={handleSubmit} className="rounded-3xl border border-white/70 bg-white/95 p-6 text-stone-950 shadow-xl shadow-black/10 md:p-7">
+            <div className="grid gap-5">
+              <input type="text" name="_gotcha" className="hidden" tabIndex="-1" autoComplete="off" />
+
+              <label htmlFor="contact-name" className="grid gap-2 text-sm font-semibold text-stone-800">
+              Name
+                <input
+                  id="contact-name"
+                  name="name"
+                  type="text"
+                  required
+                  className="rounded-2xl border border-stone-200 bg-white/90 px-4 py-3 outline-none transition focus:border-emerald-700 focus:ring-2 focus:ring-emerald-900/10"
+                  placeholder="Your name"
+                />
+              </label>
+
+              <label htmlFor="contact-email" className="grid gap-2 text-sm font-semibold text-stone-800">
+              Email
+                <input
+                  id="contact-email"
+                  name="email"
+                  type="email"
+                  required
+                  className="rounded-2xl border border-stone-200 bg-white/90 px-4 py-3 outline-none transition focus:border-emerald-700 focus:ring-2 focus:ring-emerald-900/10"
+                  placeholder="you@example.com"
+                />
+                <ValidationError prefix="Email" field="email" errors={state.errors} className="text-sm font-medium text-red-700" />
+              </label>
+
+              <label htmlFor="contact-message" className="grid gap-2 text-sm font-semibold text-stone-800">
+              Message
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  required
+                  className="min-h-32 rounded-2xl border border-stone-200 bg-white/90 px-4 py-3 outline-none transition focus:border-emerald-700 focus:ring-2 focus:ring-emerald-900/10"
+                  placeholder="Tell me about the role or project..."
+                />
+                <ValidationError prefix="Message" field="message" errors={state.errors} className="text-sm font-medium text-red-700" />
+              </label>
+
+              {state.errors && state.errors.length > 0 && (
+                <p className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-800">
+                  Something went wrong. Please try again or email me directly.
+                </p>
+              )}
+
+              <button
+                type="submit"
+                disabled={state.submitting}
+                className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-emerald-900 px-5 py-3 text-sm font-semibold text-white shadow-sm shadow-emerald-950/10 transition hover:bg-[#10261d] hover:shadow-md disabled:cursor-not-allowed disabled:bg-emerald-900/60"
+              >
+                {state.submitting ? "Sending..." : "Send Message"} <Send size={16} />
+              </button>
+            </div>
+          </form>
+        )}
       </div>
     </section>
   );
