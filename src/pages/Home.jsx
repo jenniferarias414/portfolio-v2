@@ -706,7 +706,7 @@ function Contact() {
             </div>
             <h3 className="mt-5 text-xl font-semibold tracking-tight text-stone-950">Message sent</h3>
             <p className="mt-3 text-base leading-7 text-stone-600">
-              Message sent successfully — thanks for reaching out! I’m excited to connect and will get back to you soon.
+              Success — your message made it through the pipeline. Thanks for reaching out! I’m excited to connect and will get back to you soon.
             </p>
             <button
               type="button"
