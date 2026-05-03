@@ -1,5 +1,7 @@
 import { ArrowLeft, ArrowUpRight, CheckCircle2, GitBranch } from "lucide-react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import ImageLightbox from "../components/ImageLightbox.jsx";
 
 const githubUrl = "https://github.com/jenniferarias414/retail-data-lake-system-design/tree/main";
 const imageBase = `${import.meta.env.BASE_URL}case-study-images/retail-data-lake/`;
@@ -16,16 +18,36 @@ const decisions = [
   "PII masking and error routing",
 ];
 
-const proofImages = [
-  { title: "Terraform Plan", src: "terraform-plan.png" },
-  { title: "Terraform Apply Outputs", src: "terraform-apply.png" },
-  { title: "Raw S3 Upload", src: "raw-s3-upload.png" },
-  { title: "Lambda Trigger", src: "lambda-trigger.png" },
-  { title: "Curated Output", src: "curated-output.png" },
-  { title: "Error Output", src: "error-output.png" },
-  { title: "CloudWatch Logs", src: "cloudwatch-logs.png" },
-  { title: "Valid Terminal Output", src: "terminal-valid-output.png" },
-  { title: "Invalid Terminal Output", src: "terminal-invalid-output.png" },
+const evidenceGroups = [
+  {
+    title: "Infrastructure Setup",
+    description: "Terraform was used to preview, deploy, and output the AWS proof-of-concept resources.",
+    images: [
+      { title: "Terraform Plan", src: "terraform-plan.png" },
+      { title: "Terraform Apply Outputs", src: "terraform-apply.png" },
+    ],
+  },
+  {
+    title: "AWS Validation Flow",
+    description:
+      "Sample JSON events were uploaded to S3, processed by Lambda, routed into curated or error zones, and logged in CloudWatch.",
+    images: [
+      { title: "Raw S3 Upload", src: "raw-s3-upload.png" },
+      { title: "Lambda Trigger", src: "lambda-trigger.png" },
+      { title: "Curated Output", src: "curated-output.png" },
+      { title: "Error Output", src: "error-output.png" },
+      { title: "CloudWatch Logs", src: "cloudwatch-logs.png" },
+    ],
+  },
+  {
+    title: "Terminal Verification",
+    description:
+      "The terminal output confirms valid records were masked and routed to the Silver path, while invalid records were routed to the error path with validation metadata.",
+    images: [
+      { title: "Valid Terminal Output", src: "terminal-valid-output.png" },
+      { title: "Invalid Terminal Output", src: "terminal-invalid-output.png" },
+    ],
+  },
 ];
 
 const skills = [
@@ -55,8 +77,26 @@ function Section({ eyebrow, title, children }) {
 }
 
 function RetailDataLakeCaseStudy() {
+  const [activeImageIndex, setActiveImageIndex] = useState(null);
+  const evidenceImages = useMemo(
+    () => evidenceGroups.flatMap((group) => group.images.map((image) => ({ ...image, src: `${imageBase}${image.src}` }))),
+    []
+  );
+  const activeImage = activeImageIndex === null ? null : evidenceImages[activeImageIndex];
+  const showNextImage = () => setActiveImageIndex((index) => (index === null ? 0 : (index + 1) % evidenceImages.length));
+  const showPreviousImage = () =>
+    setActiveImageIndex((index) => (index === null ? evidenceImages.length - 1 : (index - 1 + evidenceImages.length) % evidenceImages.length));
+
   return (
     <main className="min-h-screen bg-[#f7f3ea] text-stone-950">
+      <ImageLightbox
+        image={activeImage}
+        hasMultiple={evidenceImages.length > 1}
+        onClose={() => setActiveImageIndex(null)}
+        onNext={showNextImage}
+        onPrevious={showPreviousImage}
+      />
+
       <section className="px-5 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
         <div className="mx-auto max-w-6xl">
           <Link to="/#projects" className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-900 transition hover:text-stone-950">
@@ -86,10 +126,10 @@ function RetailDataLakeCaseStudy() {
                 A practical architecture story: business requirements, future-state AWS design, infrastructure-as-code, and a working validation slice.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <a href={githubUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-emerald-900 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-emerald-950/10 transition hover:bg-stone-950">
+                <a href={githubUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-emerald-900 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-emerald-950/10 transition-all duration-200 hover:-translate-y-0.5 hover:bg-stone-950 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2">
                   <GitBranch size={16} /> View GitHub Repo
                 </a>
-                <Link to="/#projects" className="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white/75 px-4 py-2 text-sm font-semibold text-stone-800 transition hover:border-emerald-800 hover:bg-emerald-50 hover:text-emerald-900">
+                <Link to="/#projects" className="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white/75 px-4 py-2 text-sm font-semibold text-stone-800 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-800 hover:bg-emerald-50 hover:text-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2">
                   Back to Projects
                 </Link>
               </div>
@@ -160,13 +200,46 @@ function RetailDataLakeCaseStudy() {
         </div>
       </Section>
 
-      <Section eyebrow="Evidence" title="Proof It Worked">
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {proofImages.map((image) => (
-            <figure key={image.src} className="overflow-hidden rounded-3xl border border-stone-200 bg-white p-3 shadow-sm transition hover:border-emerald-800/25 hover:shadow-xl hover:shadow-stone-900/5">
-              <img src={`${imageBase}${image.src}`} alt={image.title} className="aspect-[4/3] w-full rounded-2xl object-cover object-left-top" />
-              <figcaption className="px-2 py-3 text-sm font-semibold text-stone-800">{image.title}</figcaption>
-            </figure>
+      <Section eyebrow="Evidence" title="Implementation Evidence">
+        <p className="-mt-3 mb-8 max-w-3xl text-base leading-7 text-stone-600">
+          Screenshots are grouped by deployment, AWS validation flow, and terminal verification. Click any screenshot to view it larger.
+        </p>
+        <div className="space-y-8">
+          {evidenceGroups.map((group) => (
+            <div key={group.title} className="rounded-[2rem] border border-stone-200 bg-white/60 p-5 shadow-sm md:p-6">
+              <div className="mb-5 max-w-3xl">
+                <h3 className="text-lg font-semibold text-stone-950">{group.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-stone-600">{group.description}</p>
+              </div>
+              <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                {group.images.map((image) => {
+                  const fullSrc = `${imageBase}${image.src}`;
+                  const imageIndex = evidenceImages.findIndex((item) => item.src === fullSrc);
+
+                  return (
+                    <button
+                      key={image.src}
+                      type="button"
+                      onClick={() => setActiveImageIndex(imageIndex)}
+                      className="group cursor-pointer overflow-hidden rounded-3xl border border-stone-200 bg-white p-3 text-left shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-emerald-800/30 hover:shadow-xl hover:shadow-stone-900/8 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:ring-offset-[#f7f3ea]"
+                      aria-label={`View larger screenshot: ${image.title}`}
+                    >
+                      <span className="block overflow-hidden rounded-2xl bg-stone-100">
+                        <img
+                          src={fullSrc}
+                          alt={image.title}
+                          className="aspect-[4/3] w-full object-cover object-left-top transition duration-300 group-hover:scale-[1.025] group-hover:brightness-105"
+                        />
+                      </span>
+                      <span className="flex items-center justify-between gap-3 px-2 py-3 text-sm font-semibold text-stone-800">
+                        {image.title}
+                        <ArrowUpRight className="shrink-0 text-emerald-800 opacity-60 transition group-hover:translate-x-0.5 group-hover:opacity-100" size={15} />
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
           ))}
         </div>
       </Section>
