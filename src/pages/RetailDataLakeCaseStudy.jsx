@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowUpRight, CheckCircle2, GitBranch } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, CheckCircle2, FileCog, FileJson, GitBranch, Route, ShieldCheck } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import ImageLightbox from "../components/ImageLightbox.jsx";
@@ -16,6 +16,13 @@ const decisions = [
   "Lambda for lightweight event validation",
   "CloudWatch for operational visibility",
   "PII masking and error routing",
+];
+
+const buildHighlights = [
+  { label: "Validates JSON events", icon: FileJson },
+  { label: "Masks email and phone", icon: ShieldCheck },
+  { label: "Adds processing metadata", icon: FileCog },
+  { label: "Routes valid and invalid records", icon: Route },
 ];
 
 const evidenceGroups = [
@@ -181,9 +188,12 @@ function RetailDataLakeCaseStudy() {
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
-            {["Validates JSON events", "Masks email and phone", "Adds processing metadata", "Routes valid and invalid records"].map((item) => (
-              <div key={item} className="rounded-2xl border border-emerald-900/10 bg-emerald-50/60 p-5 text-sm font-semibold text-emerald-950">
-                {item}
+            {buildHighlights.map(({ label, icon: Icon }) => (
+              <div key={label} className="flex min-h-28 items-center justify-between gap-4 rounded-2xl border border-emerald-900/10 bg-emerald-50/60 p-5 text-sm font-semibold leading-6 text-emerald-950">
+                <span className="max-w-[9rem]">{label}</span>
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-emerald-900/10 bg-white/70 text-emerald-800">
+                  <Icon size={22} strokeWidth={1.8} />
+                </div>
               </div>
             ))}
           </div>
