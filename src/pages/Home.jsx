@@ -121,8 +121,8 @@ const certificationBadgeBackgrounds = [
   { src: "aws-cloud-practitioner.png", alt: "AWS Cloud Practitioner badge" },
   { src: "dbt-fundamentals.png", alt: "dbt Fundamentals badge" },
   { src: "devmountain-foundations.png", alt: "Devmountain Foundations badge" },
-  { src: "safe-6.png", alt: "SAFe 6 Practitioner badge" },
   { src: "databricks-fundamentals.png", alt: "Databricks Fundamentals badge" },
+  { src: "safe-6.png", alt: "SAFe 6 Practitioner badge" },
 ];
 
 const categories = ["All", "Data Engineering", "AI + Automation", "Analytics Engineering", "Apps + Tools"];
@@ -587,15 +587,13 @@ function Certifications() {
   return (
     <section id="certifications" className="relative overflow-hidden bg-emerald-950 px-5 py-24 text-white md:px-8">
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
-        <div className="absolute inset-x-[-10%] top-1/2 flex -translate-y-1/2 items-center justify-between gap-5 md:inset-x-[-7%] lg:inset-x-[-5%]">
-          {certificationBadgeBackgrounds.map((badge, index) => (
+        <div className="certification-badge-marquee absolute left-0 top-1/2 flex w-max -translate-y-1/2 items-center gap-10 pr-10 md:gap-14 md:pr-14 lg:gap-16 lg:pr-16">
+          {[...certificationBadgeBackgrounds, ...certificationBadgeBackgrounds].map((badge, index) => (
             <img
-              key={badge.src}
+              key={`${badge.src}-${index}`}
               src={`${import.meta.env.BASE_URL}certification-badges/${badge.src}`}
               alt={badge.alt}
-              className={`h-[16rem] w-auto shrink-0 select-none object-contain opacity-[0.075] saturate-50 blur-[0.4px] sm:h-[18rem] md:h-[20rem] lg:h-[22rem] ${
-                index === 1 || index === 3 || index === 4 ? "hidden sm:block" : ""
-              }`}
+              className="h-[15rem] w-auto shrink-0 select-none object-contain opacity-[0.075] saturate-50 blur-[0.4px] sm:h-[17rem] md:h-[19rem] lg:h-[20rem] xl:h-[22rem]"
             />
           ))}
         </div>

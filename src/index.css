@@ -24,3 +24,23 @@ body {
     transform: scaleY(0.08);
   }
 }
+
+.certification-badge-marquee {
+  animation: certification-badge-marquee 90s linear infinite;
+}
+
+@keyframes certification-badge-marquee {
+  from {
+    transform: translate3d(0, -50%, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .certification-badge-marquee {
+    animation: none;
+  }
+}
