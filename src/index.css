@@ -26,7 +26,7 @@ body {
 }
 
 .certification-badge-marquee {
-  animation: certification-badge-marquee 90s linear infinite;
+  animation: certification-badge-marquee 100s linear infinite;
 }
 
 @keyframes certification-badge-marquee {

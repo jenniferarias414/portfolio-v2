@@ -120,9 +120,9 @@ const certificationBadgeBackgrounds = [
   { src: "aws-ai-practitioner.png", alt: "AWS AI Practitioner badge" },
   { src: "aws-cloud-practitioner.png", alt: "AWS Cloud Practitioner badge" },
   { src: "dbt-fundamentals.png", alt: "dbt Fundamentals badge" },
+  { src: "databricks-fundamentals.png", alt: "Databricks Fundamentals badge", className: "scale-110" },
+  { src: "safe-6.png", alt: "SAFe 6 Practitioner badge", className: "scale-110" },
   { src: "devmountain-foundations.png", alt: "Devmountain Foundations badge" },
-  { src: "databricks-fundamentals.png", alt: "Databricks Fundamentals badge" },
-  { src: "safe-6.png", alt: "SAFe 6 Practitioner badge" },
 ];
 
 const categories = ["All", "Data Engineering", "AI + Automation", "Analytics Engineering", "Apps + Tools"];
@@ -593,7 +593,7 @@ function Certifications() {
               key={`${badge.src}-${index}`}
               src={`${import.meta.env.BASE_URL}certification-badges/${badge.src}`}
               alt={badge.alt}
-              className="h-[15rem] w-auto shrink-0 select-none object-contain opacity-[0.075] saturate-50 blur-[0.4px] sm:h-[17rem] md:h-[19rem] lg:h-[20rem] xl:h-[22rem]"
+              className={`h-[15rem] w-auto shrink-0 select-none object-contain opacity-[0.075] saturate-50 blur-[0.4px] sm:h-[17rem] md:h-[19rem] lg:h-[20rem] xl:h-[22rem] ${badge.className ?? ""}`}
             />
           ))}
         </div>
