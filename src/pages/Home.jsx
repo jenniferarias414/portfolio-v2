@@ -116,6 +116,15 @@ const toolkitItems = [
   { name: "React", logo: "react" },
 ];
 
+const certificationBadgeBackgrounds = [
+  { src: "aws-ai-practitioner.png", alt: "AWS AI Practitioner badge" },
+  { src: "aws-cloud-practitioner.png", alt: "AWS Cloud Practitioner badge" },
+  { src: "dbt-fundamentals.png", alt: "dbt Fundamentals badge" },
+  { src: "devmountain-foundations.png", alt: "Devmountain Foundations badge" },
+  { src: "safe-6.png", alt: "SAFe 6 Practitioner badge" },
+  { src: "databricks-fundamentals.png", alt: "Databricks Fundamentals badge" },
+];
+
 const categories = ["All", "Data Engineering", "AI + Automation", "Analytics Engineering", "Apps + Tools"];
 const initialContactForm = { name: "", email: "", message: "", _gotcha: "" };
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -576,15 +585,29 @@ function Certifications() {
     { group: "Enterprise & Foundations", items: ["Certified SAFe® 6 Practitioner", "React.js Web Development Program (Full Stack) — Devmountain"] },
   ];
   return (
-    <section id="certifications" className="bg-emerald-950 px-5 py-24 text-white md:px-8">
-      <div className="mx-auto mb-10 max-w-3xl text-center">
+    <section id="certifications" className="relative overflow-hidden bg-emerald-950 px-5 py-24 text-white md:px-8">
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+        <div className="absolute inset-x-[-10%] top-1/2 flex -translate-y-1/2 items-center justify-between gap-5 md:inset-x-[-7%] lg:inset-x-[-5%]">
+          {certificationBadgeBackgrounds.map((badge, index) => (
+            <img
+              key={badge.src}
+              src={`${import.meta.env.BASE_URL}certification-badges/${badge.src}`}
+              alt={badge.alt}
+              className={`h-[16rem] w-auto shrink-0 select-none object-contain opacity-[0.075] saturate-50 blur-[0.4px] sm:h-[18rem] md:h-[20rem] lg:h-[22rem] ${
+                index === 1 || index === 3 || index === 4 ? "hidden sm:block" : ""
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+      <div className="relative z-10 mx-auto mb-10 max-w-3xl text-center">
         <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-emerald-200">Credentials</p>
         <h2 className="text-3xl font-semibold tracking-tight text-white md:text-4xl">Certifications & Training</h2>
         <p className="mt-4 text-base leading-7 text-white/80">
           A mix of cloud, AI, data engineering, enterprise delivery, and front-end foundations.
         </p>
       </div>
-      <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-3">
+      <div className="relative z-10 mx-auto grid max-w-6xl gap-5 md:grid-cols-3">
         {certs.map((cert) => (
           <motion.div
             key={cert.group}
