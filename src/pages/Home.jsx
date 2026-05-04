@@ -6,6 +6,8 @@ import {
   ArrowUpRight,
   BriefcaseBusiness,
   CheckCircle2,
+  Download,
+  X,
   Mail,
   FileText,
   Database,
@@ -20,6 +22,7 @@ import {
 
 const githubUrl = "https://github.com/jenniferarias414";
 const linkedinUrl = "https://www.linkedin.com/in/jennifer-arias-427851289/";
+const resumeUrl = `${import.meta.env.BASE_URL}resume/Jenny_Arias_Data_Engineer_Resume.pdf`;
 const retailDataLakeCaseStudyUrl = `${import.meta.env.BASE_URL}case-studies/retail-data-lake-system-design`;
 const toPortfolioRoute = (url) => `/${url.replace(import.meta.env.BASE_URL, "")}`;
 
@@ -262,7 +265,7 @@ function ButtonLink({ href, children, variant = "primary", icon: Icon }) {
   );
 }
 
-function Navbar() {
+function Navbar({ onOpenResume }) {
   const links = ["About", "Projects", "Skills", "Certifications", "Notes", "Contact"];
   return (
     <header className="sticky top-0 z-50 border-b border-stone-200/70 bg-cream/80 backdrop-blur-xl">
@@ -277,15 +280,68 @@ function Navbar() {
               {link}
             </a>
           ))}
-          <a
-            href="#"
+          <button
+            type="button"
+            onClick={onOpenResume}
             className="rounded-full border border-emerald-900/45 px-4 py-2 text-sm font-semibold text-emerald-900 transition hover:bg-emerald-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2 focus:ring-offset-cream"
           >
             Resume
-          </a>
+          </button>
         </div>
       </nav>
     </header>
+  );
+}
+
+function ResumeModal({ isOpen, onClose }) {
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-stone-950/80 px-4 py-6 backdrop-blur-sm"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Resume preview"
+      onMouseDown={onClose}
+    >
+      <div className="flex max-h-full w-full max-w-5xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl shadow-black/30" onMouseDown={(event) => event.stopPropagation()}>
+        <div className="flex items-center justify-between gap-4 border-b border-stone-200 px-5 py-4">
+          <div>
+            <h2 className="text-lg font-semibold text-stone-950">Jenny Arias Resume</h2>
+            <p className="text-sm text-stone-500">Data Engineer</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <a
+              href={resumeUrl}
+              download
+              className="inline-flex items-center gap-2 rounded-full bg-emerald-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-stone-950 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2"
+            >
+              <Download size={16} /> Download
+            </a>
+            <button
+              type="button"
+              onClick={onClose}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-stone-200 text-stone-700 transition hover:border-emerald-800 hover:bg-emerald-50 hover:text-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2"
+              aria-label="Close resume preview"
+            >
+              <X size={18} />
+            </button>
+          </div>
+        </div>
+        <iframe src={resumeUrl} title="Jenny Arias Data Engineer Resume" className="h-[78vh] w-full bg-stone-100" />
+      </div>
+    </div>
   );
 }
 
@@ -311,7 +367,13 @@ function Hero() {
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
             <ButtonLink href="#projects" icon={Database}>View Projects</ButtonLink>
-            <ButtonLink href="#" variant="secondary" icon={FileText}>Download Resume</ButtonLink>
+            <a
+              href={resumeUrl}
+              download
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-stone-300 bg-white/70 px-5 py-3 text-sm font-semibold text-stone-900 transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-700 hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2"
+            >
+              <FileText size={17} /> Download Resume
+            </a>
             <ButtonLink href={githubUrl} variant="secondary" icon={GitBranch}>GitHub</ButtonLink>
             <ButtonLink href={linkedinUrl} variant="secondary" icon={BriefcaseBusiness}>LinkedIn</ButtonLink>
           </div>
@@ -837,6 +899,8 @@ function Contact() {
 }
 
 function Home() {
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
+
   useEffect(() => {
     if (!window.location.hash) return;
 
@@ -847,7 +911,8 @@ function Home() {
 
   return (
     <main className="min-h-screen bg-[#f7f3ea] text-stone-950">
-      <Navbar />
+      <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
+      <Navbar onOpenResume={() => setIsResumeOpen(true)} />
       <Hero />
       <ValueStrip />
       <Projects />
