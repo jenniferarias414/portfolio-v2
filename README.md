@@ -230,4 +230,4 @@ git push origin main
 
 This portfolio is actively being improved as I continue building data engineering projects, technical notes, case studies, and repository-backed portfolio proof.
 
-The current version now includes a real case study experience, working contact form, project filtering, GitHub Pages routing support, and a more polished data engineering brand. The Technical Notes section is still in progress and currently uses placeholder cards to show the intended future direction.
+The current version now includes a real case study experience, working contact form, project filtering, GitHub Pages routing support, and a more polished data engineering brand. The Technical Notes section is still in progress and currently uses placeholder cards to show the intended future direction.w
