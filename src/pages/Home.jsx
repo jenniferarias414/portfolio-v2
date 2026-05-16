@@ -19,6 +19,7 @@ import {
   GitBranch,
   Sparkles,
 } from "lucide-react";
+import { recentNotes } from "../data/notes.js";
 
 const githubUrl = "https://github.com/jenniferarias414";
 const linkedinUrl = "https://www.linkedin.com/in/jennifer-arias-427851289/";
@@ -94,27 +95,6 @@ const projects = [
       "Python web ingestion project that scrapes a practice website, parses HTML with XPath, and exports structured CSV/report outputs.",
     tags: ["requests", "lxml", "pandas", "XPath", "ETL"],
     github: "https://github.com/jenniferarias414/python-automation-labs/tree/main/09_bookstore_web_data_pipeline",
-  },
-];
-
-const notes = [
-  {
-    title: "What I Learned Building a SQL Lineage Tool",
-    meta: "Apr 2026 · 3 min read",
-    summary:
-      "How SQL parsing, table aliases, and column lineage connect to data governance.",
-  },
-  {
-    title: "Web Scraping as a Data Pipeline",
-    meta: "Apr 2026 · 3 min read",
-    summary:
-      "How HTTP requests, HTML parsing, XPath, and CSV outputs map to ETL concepts.",
-  },
-  {
-    title: "AI-Assisted Learning in Data Engineering",
-    meta: "Apr 2026 · 3 min read",
-    summary:
-      "How AI tools help me learn faster, debug more effectively, and document technical work.",
   },
 ];
 
@@ -712,11 +692,11 @@ function Certifications() {
 function Notes() {
   return (
     <section id="notes" className="px-5 py-24 md:px-8">
-      <SectionHeader eyebrow="Writing" title="Technical Notes">
-        Short technical writeups and learning notes from projects I’m building.
+      <SectionHeader eyebrow="WRITING" title="Notes From the Learning Curve">
+        Technical notes from projects I’m building, written the way I wish someone had explained them to me.
       </SectionHeader>
       <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-3">
-        {notes.map((note) => (
+        {recentNotes.map((note) => (
           <motion.article
             key={note.title}
             whileHover={{ y: -4 }}
@@ -725,13 +705,20 @@ function Notes() {
           >
             <BookOpen className="mb-4 text-emerald-800" />
             <h3 className="text-lg font-semibold text-stone-950">{note.title}</h3>
-            <p className="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-stone-400">{note.meta}</p>
-            <p className="mt-3 text-sm leading-6 text-stone-600">{note.summary}</p>
-            <a href="#" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-emerald-900">
+            <p className="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-stone-400">
+              {note.dateLabel} · {note.readTime}
+            </p>
+            <p className="mt-3 text-sm leading-6 text-stone-600">{note.description}</p>
+            <a href={note.path} className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-emerald-900">
               Read note <ArrowUpRight className="transition-transform duration-200 group-hover:translate-x-1" size={15} />
             </a>
           </motion.article>
         ))}
+      </div>
+      <div className="mx-auto mt-8 flex max-w-6xl justify-center">
+        <Link to="/notes" className="inline-flex items-center gap-2 text-sm font-semibold text-stone-600 transition-colors duration-200 hover:text-emerald-900">
+          View all notes <ArrowUpRight size={15} />
+        </Link>
       </div>
     </section>
   );
