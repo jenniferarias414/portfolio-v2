@@ -66,7 +66,7 @@ The design uses a cream, charcoal, and emerald palette with polished project car
 - Responsive portfolio built with React and Tailwind CSS
 - Project filtering by category
 - Featured project cards with GitHub and case study links
-- Dedicated case study route for the Retail Data Lake System Design project
+- Dedicated case study routes for the Retail Data Lake System Design and Real-Time Fraud Detection Pipeline projects
 - Case study page with architecture diagram, implementation evidence, screenshots, and image lightbox
 - React Router navigation with GitHub Pages fallback support
 - Technical toolkit section with recognizable technologies
@@ -81,7 +81,7 @@ The design uses a cream, charcoal, and emerald palette with polished project car
 
 ---
 
-## Featured Case Study
+## Featured Case Studies
 
 ### Retail Data Lake System Design on AWS
 
@@ -102,6 +102,23 @@ The case study includes:
 - Screenshot lightbox for implementation proof
 
 This case study is designed to show both technical implementation and the ability to explain architecture decisions clearly.
+
+### Real-Time Fraud Detection Pipeline
+
+The portfolio also includes a professional case study for a real-time fraud detection system design project.
+
+The case study includes:
+
+- Business problem summary for hourly batch fraud detection latency
+- Proposed AWS future-state streaming architecture
+- Architecture diagram
+- Local Python proof-of-concept flow
+- Validation, sensitive-field masking, fraud scoring, and decision routing
+- Raw, scored, and audit-style output evidence
+- Terraform infrastructure skeleton validation
+- Screenshot lightbox for implementation proof
+
+This case study is written as a system design and prototype project, not a production deployment.
 
 ---
 
@@ -132,6 +149,7 @@ This section is intended to become a learning archive and writing sample area, s
 - LinkedIn profile link
 - Resume link/button
 - Retail Data Lake case study page
+- Real-Time Fraud Detection Pipeline case study page
 - Working contact form via Formspree
 
 ### In Progress

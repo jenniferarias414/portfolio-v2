@@ -1,5 +1,5 @@
 import { useForm } from "@formspree/react";
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
@@ -24,6 +24,8 @@ const githubUrl = "https://github.com/jenniferarias414";
 const linkedinUrl = "https://www.linkedin.com/in/jennifer-arias-427851289/";
 const resumeUrl = `${import.meta.env.BASE_URL}resume/Jenny_Arias_Data_Engineer_Resume.pdf`;
 const retailDataLakeCaseStudyUrl = `${import.meta.env.BASE_URL}case-studies/retail-data-lake-system-design`;
+const fraudDetectionCaseStudyUrl = `${import.meta.env.BASE_URL}case-studies/real-time-fraud-detection-pipeline`;
+const fraudDetectionRepoUrl = "https://github.com/jenniferarias414/real-time-fraud-detection-pipeline";
 const toPortfolioRoute = (url) => `/${url.replace(import.meta.env.BASE_URL, "")}`;
 
 const projects = [
@@ -43,6 +45,15 @@ const projects = [
     tags: ["AWS", "Terraform", "Lambda", "Data Lake", "System Design"],
     github: "https://github.com/jenniferarias414/retail-data-lake-system-design/tree/main",
     caseStudyUrl: retailDataLakeCaseStudyUrl,
+  },
+  {
+    title: "Real-Time Fraud Detection Pipeline",
+    category: "Data Engineering",
+    summary:
+      "AWS system design case study for real-time fraud scoring, event-driven alerts, audit lineage, and governed data lake storage.",
+    tags: ["AWS", "System Design", "Streaming", "Fraud Detection", "Data Pipeline"],
+    github: fraudDetectionRepoUrl,
+    caseStudyUrl: fraudDetectionCaseStudyUrl,
   },
   {
     title: "Python Automation Labs",
@@ -461,8 +472,6 @@ function Projects() {
   );
 
   useEffect(() => {
-    setPeekProject(null);
-
     if (filtered.length === 0) return undefined;
 
     const getPeekDelay = () => 45000 + Math.random() * 10000;
@@ -479,6 +488,9 @@ function Projects() {
 
     let hideTimer;
     let peekTimer;
+    const resetTimer = window.setTimeout(() => {
+      setPeekProject(null);
+    }, 0);
 
     const schedulePeek = () => {
       peekTimer = window.setTimeout(() => {
@@ -490,6 +502,7 @@ function Projects() {
     schedulePeek();
 
     return () => {
+      window.clearTimeout(resetTimer);
       window.clearTimeout(peekTimer);
       window.clearTimeout(hideTimer);
     };
@@ -568,11 +581,15 @@ function Projects() {
                 ))}
               </div>
               <div className="mt-auto flex gap-3 pt-6">
-                {project.caseStudyUrl && (
+                {project.caseStudyUrl?.startsWith("http") ? (
+                  <a href={project.caseStudyUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-full border border-emerald-900/20 bg-emerald-900 px-3 py-1 text-sm font-semibold leading-5 text-white shadow-[0_2px_6px_rgba(6,78,59,0.10)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-stone-950 hover:shadow-sm hover:shadow-stone-900/10">
+                    Case Study <ArrowUpRight size={14} />
+                  </a>
+                ) : project.caseStudyUrl ? (
                   <Link to={toPortfolioRoute(project.caseStudyUrl)} className="inline-flex items-center gap-1.5 rounded-full border border-emerald-900/20 bg-emerald-900 px-3 py-1 text-sm font-semibold leading-5 text-white shadow-[0_2px_6px_rgba(6,78,59,0.10)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-stone-950 hover:shadow-sm hover:shadow-stone-900/10">
                     Case Study <ArrowUpRight size={14} />
                   </Link>
-                )}
+                ) : null}
                 <a href={project.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-1 py-2 text-sm font-semibold text-stone-500 transition-colors duration-200 hover:text-emerald-900">
                   GitHub <ArrowUpRight size={15} />
                 </a>
