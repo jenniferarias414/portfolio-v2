@@ -33,6 +33,7 @@ const projects = [
   {
     title: "Baggage Claim SQL Lineage Tool",
     category: "Data Engineering",
+    categories: ["Data Engineering", "Apps + Tools"],
     summary:
       "Streamlit app that parses airline baggage-claims SQL and maps output columns back to source tables and columns for lineage and governance.",
     tags: ["Python", "Streamlit", "SQLGlot", "pandas", "SQL Lineage"],
@@ -57,6 +58,15 @@ const projects = [
     tags: ["AWS", "System Design", "Streaming", "Fraud Detection", "Data Pipeline"],
     github: fraudDetectionRepoUrl,
     caseStudyUrl: fraudDetectionCaseStudyUrl,
+  },
+  {
+    title: "Terraform Static Site Mini Project",
+    category: "Cloud + Infrastructure",
+    categories: ["Cloud + Infrastructure", "Apps + Tools"],
+    summary:
+      "Infrastructure as Code mini-project using Terraform to define an AWS S3 static website hosting setup and practice the plan, apply, validate, and destroy workflow.",
+    tags: ["Terraform", "AWS", "S3", "IaC", "Cloud"],
+    github: "https://github.com/jenniferarias414/terraform-static-site-mini-project",
   },
   {
     title: "Python Automation Labs",
