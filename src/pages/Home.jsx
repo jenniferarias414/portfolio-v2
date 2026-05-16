@@ -41,6 +41,7 @@ const projects = [
   {
     title: "Retail Data Lake System Design",
     category: "Data Engineering",
+    categories: ["Data Engineering", "Cloud + Infrastructure"],
     summary:
       "AWS data lake case study with Terraform, S3, Lambda validation, curated/error routing, and CloudWatch logging.",
     tags: ["AWS", "Terraform", "Lambda", "Data Lake", "System Design"],
@@ -50,6 +51,7 @@ const projects = [
   {
     title: "Real-Time Fraud Detection Pipeline",
     category: "Data Engineering",
+    categories: ["Data Engineering", "Cloud + Infrastructure"],
     summary:
       "AWS system design case study for real-time fraud scoring, event-driven alerts, audit lineage, and governed data lake storage.",
     tags: ["AWS", "System Design", "Streaming", "Fraud Detection", "Data Pipeline"],
@@ -119,7 +121,7 @@ const certificationBadgeBackgrounds = [
   { src: "devmountain-foundations.png", alt: "Devmountain Foundations badge" },
 ];
 
-const categories = ["All", "Data Engineering", "AI + Automation", "Analytics Engineering", "Apps + Tools"];
+const categories = ["All", "Data Engineering", "Cloud + Infrastructure", "AI + Automation", "Analytics Engineering", "Apps + Tools"];
 const initialContactForm = { name: "", email: "", message: "", _gotcha: "" };
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -447,7 +449,7 @@ function Projects() {
   const [active, setActive] = useState("All");
   const [peekProject, setPeekProject] = useState(null);
   const filtered = useMemo(
-    () => (active === "All" ? projects : projects.filter((project) => project.category === active)),
+    () => (active === "All" ? projects : projects.filter((project) => project.category === active || project.categories?.includes(active))),
     [active]
   );
 
