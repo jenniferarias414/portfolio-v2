@@ -21,8 +21,8 @@ export const notes = [
   },
   {
     title: "Real-Time Fraud Detection as a Data Pipeline",
-    date: "2026-04-01",
-    dateLabel: "APR 2026",
+    date: "2026-05-01",
+    dateLabel: "MAY 2026",
     readTime: "4 MIN READ",
     description:
       "How streaming ingestion, fraud scoring, queues, alerts, and audit logs fit together in a real-time data pipeline.",
