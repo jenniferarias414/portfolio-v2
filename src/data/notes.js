@@ -11,8 +11,8 @@ export const notes = [
   },
   {
     title: "What Terraform Finally Means to Me",
-    date: "2026-04-01",
-    dateLabel: "APR 2026",
+    date: "2026-05-01",
+    dateLabel: "MAY 2026",
     readTime: "3 MIN READ",
     description:
       "A layman-friendly mental model for infrastructure as code, cloud resources, and why teams don’t just click around in AWS.",
