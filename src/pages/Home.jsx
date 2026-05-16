@@ -1,6 +1,6 @@
 import { useForm } from "@formspree/react";
-import { useEffect, useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   ArrowUpRight,
@@ -19,96 +19,13 @@ import {
   GitBranch,
   Sparkles,
 } from "lucide-react";
+import ProjectCard from "../components/ProjectCard.jsx";
 import { recentNotes } from "../data/notes.js";
+import { featuredProjects } from "../data/projects.js";
 
 const githubUrl = "https://github.com/jenniferarias414";
 const linkedinUrl = "https://www.linkedin.com/in/jennifer-arias-427851289/";
 const resumeUrl = `${import.meta.env.BASE_URL}resume/Jenny_Arias_Data_Engineer_Resume.pdf`;
-const retailDataLakeCaseStudyUrl = `${import.meta.env.BASE_URL}case-studies/retail-data-lake-system-design`;
-const fraudDetectionCaseStudyUrl = `${import.meta.env.BASE_URL}case-studies/real-time-fraud-detection-pipeline`;
-const fraudDetectionRepoUrl = "https://github.com/jenniferarias414/real-time-fraud-detection-pipeline";
-const toPortfolioRoute = (url) => `/${url.replace(import.meta.env.BASE_URL, "")}`;
-
-const projects = [
-  {
-    title: "Baggage Claim SQL Lineage Tool",
-    category: "Data Engineering",
-    categories: ["Data Engineering", "Apps + Tools"],
-    summary:
-      "Streamlit app that parses airline baggage-claims SQL and maps output columns back to source tables and columns for lineage and governance.",
-    tags: ["Python", "Streamlit", "SQLGlot", "pandas", "SQL Lineage"],
-    github: "https://github.com/jenniferarias414/python-automation-labs/tree/main/08_baggage_claim_sql_lineage_tool",
-  },
-  {
-    title: "Retail Data Lake System Design",
-    category: "Data Engineering",
-    categories: ["Data Engineering", "Cloud + Infrastructure"],
-    summary:
-      "AWS data lake case study with Terraform, S3, Lambda validation, curated/error routing, and CloudWatch logging.",
-    tags: ["AWS", "Terraform", "Lambda", "Data Lake", "System Design"],
-    github: "https://github.com/jenniferarias414/retail-data-lake-system-design/tree/main",
-    caseStudyUrl: retailDataLakeCaseStudyUrl,
-  },
-  {
-    title: "Real-Time Fraud Detection Pipeline",
-    category: "Data Engineering",
-    categories: ["Data Engineering", "Cloud + Infrastructure"],
-    summary:
-      "AWS system design case study for real-time fraud scoring, event-driven alerts, audit lineage, and governed data lake storage.",
-    tags: ["AWS", "System Design", "Streaming", "Fraud Detection", "Data Pipeline"],
-    github: fraudDetectionRepoUrl,
-    caseStudyUrl: fraudDetectionCaseStudyUrl,
-  },
-  {
-    title: "Terraform Static Site Mini Project",
-    category: "Cloud + Infrastructure",
-    categories: ["Cloud + Infrastructure", "Apps + Tools"],
-    summary:
-      "Infrastructure as Code mini-project using Terraform to define an AWS S3 static website hosting setup and practice the plan, apply, validate, and destroy workflow.",
-    tags: ["Terraform", "AWS", "S3", "IaC", "Cloud"],
-    github: "https://github.com/jenniferarias414/terraform-static-site-mini-project",
-  },
-  {
-    title: "Python Automation Labs",
-    category: "AI + Automation",
-    summary:
-      "Collection of Python automation projects covering files, regex, Excel reports, JSON conversion, scheduling, email alerts, and web scraping.",
-    tags: ["Python", "Automation", "ETL", "SMTP", "Web Scraping"],
-    github: "https://github.com/jenniferarias414/python-automation-labs/tree/main",
-  },
-  {
-    title: "dbt Data Projects",
-    category: "Analytics Engineering",
-    summary:
-      "Analytics engineering projects focused on transforming raw data into modeled, tested, analytics-ready datasets.",
-    tags: ["dbt", "SQL", "Data Modeling", "Testing"],
-    github: "https://github.com/jenniferarias414/dbt-data-projects",
-  },
-  {
-    title: "Delta Lake Fundamentals Lab",
-    category: "Data Engineering",
-    summary:
-      "Databricks project demonstrating Delta Lake versioning, time travel, schema evolution, and merge operations.",
-    tags: ["Databricks", "Delta Lake", "PySpark", "Lakehouse"],
-    github: "https://github.com/jenniferarias414/delta-lake-fundamentals-lab",
-  },
-  {
-    title: "Databricks Customer Analysis",
-    category: "Analytics Engineering",
-    summary:
-      "PySpark analysis project using joins, aggregations, and ranking logic to analyze customer transaction data.",
-    tags: ["PySpark", "Databricks", "Analytics", "SQL"],
-    github: "https://github.com/jenniferarias414/databricks-pyspark-customer-analysis",
-  },
-  {
-    title: "Bookstore Web Data Pipeline",
-    category: "Apps + Tools",
-    summary:
-      "Python web ingestion project that scrapes a practice website, parses HTML with XPath, and exports structured CSV/report outputs.",
-    tags: ["requests", "lxml", "pandas", "XPath", "ETL"],
-    github: "https://github.com/jenniferarias414/python-automation-labs/tree/main/09_bookstore_web_data_pipeline",
-  },
-];
 
 const toolkitItems = [
   { name: "Python", logo: "python" },
@@ -131,7 +48,6 @@ const certificationBadgeBackgrounds = [
   { src: "devmountain-foundations.png", alt: "Devmountain Foundations badge" },
 ];
 
-const categories = ["All", "Data Engineering", "Cloud + Infrastructure", "AI + Automation", "Analytics Engineering", "Apps + Tools"];
 const initialContactForm = { name: "", email: "", message: "", _gotcha: "" };
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -456,139 +372,22 @@ function ValueStrip() {
 }
 
 function Projects() {
-  const [active, setActive] = useState("All");
-  const [peekProject, setPeekProject] = useState(null);
-  const filtered = useMemo(
-    () => (active === "All" ? projects : projects.filter((project) => project.category === active || project.categories?.includes(active))),
-    [active]
-  );
-
-  useEffect(() => {
-    if (filtered.length === 0) return undefined;
-
-    const getPeekDelay = () => 45000 + Math.random() * 10000;
-
-    const showPeek = () => {
-      const edgeIndexes = [...new Set([0, Math.min(filtered.length - 1, 2), filtered.length - 1])];
-      const edgeProject = filtered[edgeIndexes[Math.floor(Math.random() * edgeIndexes.length)]];
-      setPeekProject(edgeProject.title);
-
-      return window.setTimeout(() => {
-        setPeekProject(null);
-      }, 3000);
-    };
-
-    let hideTimer;
-    let peekTimer;
-    const resetTimer = window.setTimeout(() => {
-      setPeekProject(null);
-    }, 0);
-
-    const schedulePeek = () => {
-      peekTimer = window.setTimeout(() => {
-      hideTimer = showPeek();
-        peekTimer = window.setTimeout(schedulePeek, 2000);
-      }, getPeekDelay());
-    };
-
-    schedulePeek();
-
-    return () => {
-      window.clearTimeout(resetTimer);
-      window.clearTimeout(peekTimer);
-      window.clearTimeout(hideTimer);
-    };
-  }, [filtered]);
-
   return (
     <section id="projects" className="px-5 py-24 md:px-8">
       <SectionHeader eyebrow="Portfolio" title="Featured Projects">
         Hands-on projects focused on data pipelines, automation, analytics engineering, and AI-enabled workflows.
       </SectionHeader>
 
-      <div className="mx-auto mb-8 flex max-w-5xl flex-wrap justify-center gap-3">
-        {categories.map((category) => (
-          <motion.button
-            key={category}
-            onClick={() => setActive(category)}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.16, ease: "easeOut" }}
-            className={`rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 ${
-              active === category
-                ? "border border-emerald-900 bg-emerald-900 text-white shadow-lg shadow-emerald-950/10"
-                : "border border-stone-300 bg-white/60 text-stone-700 hover:border-emerald-800 hover:bg-emerald-50/70 hover:text-emerald-900"
-            }`}
-          >
-            {category}
-          </motion.button>
+      <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {featuredProjects.map((project, index) => (
+          <ProjectCard key={project.title} project={project} index={index} />
         ))}
       </div>
 
-      <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <AnimatePresence mode="popLayout">
-          {filtered.map((project, index) => (
-            <motion.article
-              layout
-              key={project.title}
-              initial={{ opacity: 0, y: 4 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 6 }}
-              transition={{ duration: 0.08, delay: index * 0.005, ease: [0.22, 1, 0.36, 1] }}
-              whileHover={{ y: -4 }}
-              className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-stone-200 bg-white p-6 shadow-sm transition-all duration-200 ease-out hover:border-emerald-800/30 hover:shadow-xl hover:shadow-stone-900/8"
-            >
-              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald-800 via-sage-500 to-stone-300" />
-              <AnimatePresence>
-                {peekProject === project.title && (
-                  <motion.div
-                    aria-hidden="true"
-                    initial={{ opacity: 0, x: 18, rotate: 4 }}
-                    animate={{ opacity: 0.92, x: 0, rotate: 0 }}
-                    exit={{ opacity: 0, x: 18, rotate: 3 }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="pointer-events-none absolute -right-3 top-24 z-0 hidden h-6 w-6 rounded-full border border-stone-900/10 bg-[#b9a17c] shadow-[0_2px_6px_rgba(87,75,58,0.10)] md:block"
-                  >
-                    <span className="absolute -left-px top-px h-2 w-2 -rotate-12 rounded-sm bg-[#8d7656]" />
-                    <span className="absolute right-0.5 top-px h-2 w-2 rotate-12 rounded-sm bg-[#8d7656]" />
-                    <span className="absolute left-1.5 top-2.5 h-1 w-0.5 rounded-full bg-stone-800 [animation:blink_1.4s_ease-in-out_0.75s_1]" />
-                    <span className="absolute right-1.5 top-2.5 h-1 w-0.5 rounded-full bg-stone-800 [animation:blink_1.4s_ease-in-out_0.75s_1]" />
-                    <span className="absolute left-1/2 top-[0.9rem] h-0.5 w-0.5 -translate-x-1/2 rounded-full bg-stone-700" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-              <div className="mb-5 flex items-center justify-between gap-4">
-                <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-800">
-                  {project.category}
-                </span>
-                <Sparkles className="text-stone-300 transition-all duration-200 ease-out group-hover:rotate-6 group-hover:text-emerald-700 group-hover:opacity-90" size={20} />
-              </div>
-              <h3 className="text-xl font-semibold tracking-tight text-stone-950">{project.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-stone-600">{project.summary}</p>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span key={tag} className="rounded-full border border-stone-200 bg-stone-50 px-3 py-1 text-xs font-medium text-stone-600">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <div className="mt-auto flex gap-3 pt-6">
-                {project.caseStudyUrl?.startsWith("http") ? (
-                  <a href={project.caseStudyUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-full border border-emerald-900/20 bg-emerald-900 px-3 py-1 text-sm font-semibold leading-5 text-white shadow-[0_2px_6px_rgba(6,78,59,0.10)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-stone-950 hover:shadow-sm hover:shadow-stone-900/10">
-                    Case Study <ArrowUpRight size={14} />
-                  </a>
-                ) : project.caseStudyUrl ? (
-                  <Link to={toPortfolioRoute(project.caseStudyUrl)} className="inline-flex items-center gap-1.5 rounded-full border border-emerald-900/20 bg-emerald-900 px-3 py-1 text-sm font-semibold leading-5 text-white shadow-[0_2px_6px_rgba(6,78,59,0.10)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-stone-950 hover:shadow-sm hover:shadow-stone-900/10">
-                    Case Study <ArrowUpRight size={14} />
-                  </Link>
-                ) : null}
-                <a href={project.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-1 py-2 text-sm font-semibold text-stone-500 transition-colors duration-200 hover:text-emerald-900">
-                  GitHub <ArrowUpRight size={15} />
-                </a>
-              </div>
-            </motion.article>
-          ))}
-        </AnimatePresence>
+      <div className="mx-auto mt-9 flex max-w-7xl justify-center">
+        <Link to="/projects" className="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white/70 px-5 py-3 text-sm font-semibold text-stone-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-800 hover:bg-emerald-50/80 hover:text-emerald-900">
+          View All Projects <ArrowUpRight size={15} />
+        </Link>
       </div>
     </section>
   );
