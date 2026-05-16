@@ -643,13 +643,16 @@ function About() {
           className="max-w-3xl rounded-[2rem] border border-stone-200 bg-white p-8 shadow-sm"
         >
           <p className="text-lg leading-9 text-stone-700">
-            I’m a data engineer with a background in healthcare operations and enterprise technology. My path into tech has been driven by curiosity, resilience, and a passion for building systems that make work easier.
+            I’m an engineer building data-focused solutions with Python, SQL, PySpark, Databricks, AWS, Terraform, and AI-assisted development.
           </p>
           <p className="mt-7 text-lg leading-9 text-stone-700">
-            Today I focus on <strong className="font-semibold text-stone-950">Python</strong>, <strong className="font-semibold text-stone-950">SQL</strong>, <strong className="font-semibold text-stone-950">PySpark</strong>, <strong className="font-semibold text-stone-950">Databricks</strong>, dbt, <strong className="font-semibold text-stone-950">AWS</strong>, and AI-assisted development—creating practical solutions for automation, reporting, data quality, and analytics workflows.
+            My path into technology has been anything but linear — healthcare, web development, enterprise data work, and a growing collection of projects that started with “I have no idea what this means yet.” That path has made me resourceful, resilient, agile, and practical.
           </p>
           <p className="mt-7 text-base leading-8 text-stone-600">
-            Outside of tech, I enjoy travel, plants, lifelong learning, and finding smarter ways to solve everyday problems.
+            I care about building useful systems, writing documentation that actually helps, and making complicated technical ideas feel less intimidating.
+          </p>
+          <p className="mt-7 text-base leading-8 text-stone-600">
+            Outside of work, I’m usually learning something new, tending to my plants, planning a trip, or over-engineering a solution to an everyday problem.
           </p>
         </motion.div>
       </div>
