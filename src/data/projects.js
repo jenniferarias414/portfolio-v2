@@ -1,5 +1,6 @@
 const retailDataLakeCaseStudyUrl = `${import.meta.env.BASE_URL}case-studies/retail-data-lake-system-design`;
 const fraudDetectionCaseStudyUrl = `${import.meta.env.BASE_URL}case-studies/real-time-fraud-detection-pipeline`;
+const healthcareDataWarehouseCaseStudyUrl = `${import.meta.env.BASE_URL}case-studies/healthcare-data-warehouse-modernization`;
 
 export const projectCategories = ["All", "Data Engineering", "Analytics Engineering", "Cloud + Infrastructure", "AI + Automation", "Apps + Tools"];
 
@@ -35,6 +36,17 @@ export const projects = [
     tags: ["AWS", "System Design", "Streaming", "Fraud Detection", "Data Pipeline"],
     github: "https://github.com/jenniferarias414/real-time-fraud-detection-pipeline",
     caseStudyUrl: fraudDetectionCaseStudyUrl,
+  },
+  {
+    title: "Healthcare Data Warehouse Modernization",
+    category: "Data Engineering",
+    categories: ["Data Engineering", "Cloud + Infrastructure"],
+    featured: true,
+    summary:
+      "AWS and Snowflake system design case study for modernizing a legacy healthcare warehouse with ELT pipelines, data quality checks, PHI governance, and self-service analytics.",
+    tags: ["AWS", "Snowflake", "System Design", "Data Warehouse", "Healthcare"],
+    github: "https://github.com/jenniferarias414/healthcare-warehouse-modernization",
+    caseStudyUrl: healthcareDataWarehouseCaseStudyUrl,
   },
   {
     title: "Terraform Static Site Mini Project",
