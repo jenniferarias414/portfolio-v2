@@ -19,7 +19,6 @@ export const notes = [
     path: "#",
     featured: true,
   },
-  
   {
     title: "Real-Time Fraud Detection as a Data Pipeline",
     date: "2026-05-01",
