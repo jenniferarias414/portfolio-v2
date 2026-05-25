@@ -434,13 +434,13 @@ function About() {
           className="max-w-3xl rounded-[2rem] border border-stone-200 bg-white p-8 shadow-sm"
         >
           <p className="text-lg leading-9 text-stone-700">
-            I’m an engineer building data-focused solutions with Python, SQL, PySpark, Databricks, AWS, Terraform, and AI-assisted development.
+            I’m an engineer building <strong className="font-semibold text-stone-950">data-focused solutions</strong> with <strong className="font-semibold text-stone-950">Python, SQL, PySpark, Databricks, AWS, Terraform,</strong> and <strong className="font-semibold text-stone-950">AI-assisted development</strong>.
           </p>
           <p className="mt-7 text-lg leading-9 text-stone-700">
-            My path into technology has been anything but linear — healthcare, web development, enterprise data work, and a growing collection of projects that started with “I have no idea what this means yet.” That path has made me resourceful, resilient, agile, and practical.
+            My path into technology has been anything but linear — healthcare, web development, enterprise data work, and a growing collection of projects that started with “I have no idea what this means yet.” That path has made me <strong className="font-semibold text-stone-950">resourceful, resilient, agile,</strong> and <strong className="font-semibold text-stone-950">practical</strong>.
           </p>
           <p className="mt-7 text-base leading-8 text-stone-600">
-            I care about building useful systems, writing documentation that actually helps, and making complicated technical ideas feel less intimidating.
+            I care about building <strong className="font-semibold text-stone-950">useful systems</strong>, writing <strong className="font-semibold text-stone-950">documentation that actually helps</strong>, and making complicated technical ideas feel less intimidating.
           </p>
           <p className="mt-7 text-base leading-8 text-stone-600">
             Outside of work, I’m usually learning something new, tending to my plants, planning a trip, or over-engineering a solution to an everyday problem.
