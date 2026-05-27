@@ -54,7 +54,7 @@ export const projects = [
     categories: ["Data Engineering", "Cloud + Infrastructure", "Analytics Engineering"],
     featured: true,
     summary:
-      "Built an end-to-end learning project that accepts JSON events through API Gateway, validates records with Lambda, streams valid events through Kinesis and Firehose into S3, and loads them into Snowflake with Snowpipe.",
+      "Learning project that validates API Gateway JSON events with Lambda, streams valid records through Kinesis and Firehose into S3, and loads them into Snowflake with Snowpipe.",
     tags: ["AWS", "Kinesis", "Lambda", "Snowflake", "Streaming"],
     github: "https://github.com/jenniferarias414/real-time-streaming-pipeline-aws-snowflake",
   },
