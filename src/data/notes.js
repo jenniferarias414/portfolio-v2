@@ -1,5 +1,15 @@
 export const notes = [
   {
+    title: "What Finally Clicked Building a Real-Time Streaming Pipeline",
+    date: "2026-05-27",
+    dateLabel: "MAY 2026",
+    readTime: "4 MIN READ",
+    description:
+      "How API Gateway, Lambda, Kinesis, Firehose, S3, Snowpipe, and Snowflake started making sense as one connected data flow.",
+    path: `${import.meta.env.BASE_URL}notes/real-time-streaming-pipeline`,
+    featured: true,
+  },
+  {
     title: "What I Learned Building a SQL Lineage Tool",
     date: "2026-04-01",
     dateLabel: "APR 2026",
