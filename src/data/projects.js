@@ -1,6 +1,7 @@
 const retailDataLakeCaseStudyUrl = `${import.meta.env.BASE_URL}case-studies/retail-data-lake-system-design`;
 const fraudDetectionCaseStudyUrl = `${import.meta.env.BASE_URL}case-studies/real-time-fraud-detection-pipeline`;
 const healthcareDataWarehouseCaseStudyUrl = `${import.meta.env.BASE_URL}case-studies/healthcare-data-warehouse-modernization`;
+const snowflakeScd1CaseStudyUrl = `${import.meta.env.BASE_URL}case-studies/snowflake-scd1-customer-pipeline`;
 
 export const projectCategories = ["All", "Data Engineering", "Analytics Engineering", "Cloud + Infrastructure", "AI + Automation", "Apps + Tools"];
 
@@ -57,6 +58,19 @@ export const projects = [
       "Learning project that validates API Gateway JSON events with Lambda, streams valid records through Kinesis and Firehose into S3, and loads them into Snowflake with Snowpipe.",
     tags: ["AWS", "Kinesis", "Lambda", "Snowflake", "Streaming"],
     github: "https://github.com/jenniferarias414/real-time-streaming-pipeline-aws-snowflake",
+  },
+  {
+    title: "Snowflake SCD Type 1 Customer Pipeline",
+    category: "Data Engineering",
+    categories: ["Data Engineering", "Cloud + Infrastructure", "Analytics Engineering"],
+    featured: true,
+    summary:
+      "Automated customer update pipeline that loads CSV files from S3 into Snowflake and applies SCD Type 1 logic to keep the CUSTOMER table current.",
+    tags: ["Snowflake", "Snowpipe", "Streams", "Tasks", "SCD Type 1"],
+    github: "https://github.com/jenniferarias414/snowflake-scd1-customer-pipeline",
+    githubLabel: "View GitHub",
+    caseStudyUrl: snowflakeScd1CaseStudyUrl,
+    caseStudyLabel: "View Case Study",
   },
   {
     title: "Terraform Static Site Mini Project",

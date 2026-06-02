@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import FraudDetectionCaseStudy from "./pages/FraudDetectionCaseStudy.jsx";
 import HealthcareDataWarehouseCaseStudy from "./pages/HealthcareDataWarehouseCaseStudy.jsx";
@@ -7,6 +7,8 @@ import NotesPage from "./pages/NotesPage.jsx";
 import ProjectsPage from "./pages/ProjectsPage.jsx";
 import RealTimeStreamingPipelineNote from "./pages/RealTimeStreamingPipelineNote.jsx";
 import RetailDataLakeCaseStudy from "./pages/RetailDataLakeCaseStudy.jsx";
+
+const SnowflakeScd1CustomerPipelineCaseStudy = lazy(() => import("./pages/SnowflakeScd1CustomerPipelineCaseStudy.jsx"));
 
 const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, "");
 
@@ -33,6 +35,14 @@ function App() {
         <Route path="/case-studies/retail-data-lake-system-design" element={<RetailDataLakeCaseStudy />} />
         <Route path="/case-studies/real-time-fraud-detection-pipeline" element={<FraudDetectionCaseStudy />} />
         <Route path="/case-studies/healthcare-data-warehouse-modernization" element={<HealthcareDataWarehouseCaseStudy />} />
+        <Route
+          path="/case-studies/snowflake-scd1-customer-pipeline"
+          element={
+            <Suspense fallback={<main className="min-h-screen bg-[#f7f3ea]" />}>
+              <SnowflakeScd1CustomerPipelineCaseStudy />
+            </Suspense>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

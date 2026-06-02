@@ -50,18 +50,18 @@ function ProjectCard({ project, index = 0, peekProject }) {
           </span>
         ))}
       </div>
-      <div className="mt-auto flex gap-3 pt-6">
+      <div className="mt-auto flex flex-wrap gap-3 pt-6">
         {project.caseStudyUrl?.startsWith("http") ? (
           <a href={project.caseStudyUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-full border border-emerald-900/20 bg-emerald-900 px-3 py-1 text-sm font-semibold leading-5 text-white shadow-[0_2px_6px_rgba(6,78,59,0.10)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-stone-950 hover:shadow-sm hover:shadow-stone-900/10">
-            Case Study <ArrowUpRight size={14} />
+            {project.caseStudyLabel ?? "Case Study"} <ArrowUpRight size={14} />
           </a>
         ) : project.caseStudyUrl ? (
           <Link to={toPortfolioRoute(project.caseStudyUrl)} className="inline-flex items-center gap-1.5 rounded-full border border-emerald-900/20 bg-emerald-900 px-3 py-1 text-sm font-semibold leading-5 text-white shadow-[0_2px_6px_rgba(6,78,59,0.10)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-stone-950 hover:shadow-sm hover:shadow-stone-900/10">
-            Case Study <ArrowUpRight size={14} />
+            {project.caseStudyLabel ?? "Case Study"} <ArrowUpRight size={14} />
           </Link>
         ) : null}
         <a href={project.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-1 py-2 text-sm font-semibold text-stone-500 transition-colors duration-200 hover:text-emerald-900">
-          GitHub <ArrowUpRight size={15} />
+          {project.githubLabel ?? "GitHub"} <ArrowUpRight size={15} />
         </a>
       </div>
     </motion.article>
