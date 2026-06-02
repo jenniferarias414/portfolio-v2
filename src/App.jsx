@@ -9,6 +9,7 @@ import RealTimeStreamingPipelineNote from "./pages/RealTimeStreamingPipelineNote
 import RetailDataLakeCaseStudy from "./pages/RetailDataLakeCaseStudy.jsx";
 
 const SnowflakeScd1CustomerPipelineCaseStudy = lazy(() => import("./pages/SnowflakeScd1CustomerPipelineCaseStudy.jsx"));
+const EtlScd2DbtSnowflakeCaseStudy = lazy(() => import("./pages/EtlScd2DbtSnowflakeCaseStudy.jsx"));
 
 const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, "");
 
@@ -40,6 +41,14 @@ function App() {
           element={
             <Suspense fallback={<main className="min-h-screen bg-[#f7f3ea]" />}>
               <SnowflakeScd1CustomerPipelineCaseStudy />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/case-studies/etl-scd2-dbt-snowflake"
+          element={
+            <Suspense fallback={<main className="min-h-screen bg-[#f7f3ea]" />}>
+              <EtlScd2DbtSnowflakeCaseStudy />
             </Suspense>
           }
         />

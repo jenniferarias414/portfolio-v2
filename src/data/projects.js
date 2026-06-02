@@ -2,6 +2,7 @@ const retailDataLakeCaseStudyUrl = `${import.meta.env.BASE_URL}case-studies/reta
 const fraudDetectionCaseStudyUrl = `${import.meta.env.BASE_URL}case-studies/real-time-fraud-detection-pipeline`;
 const healthcareDataWarehouseCaseStudyUrl = `${import.meta.env.BASE_URL}case-studies/healthcare-data-warehouse-modernization`;
 const snowflakeScd1CaseStudyUrl = `${import.meta.env.BASE_URL}case-studies/snowflake-scd1-customer-pipeline`;
+const etlScd2CaseStudyUrl = `${import.meta.env.BASE_URL}case-studies/etl-scd2-dbt-snowflake`;
 
 export const projectCategories = ["All", "Data Engineering", "Analytics Engineering", "Cloud + Infrastructure", "AI + Automation", "Apps + Tools"];
 
@@ -68,9 +69,27 @@ export const projects = [
       "Automated customer update pipeline that loads CSV files from S3 into Snowflake and applies SCD Type 1 logic to keep the CUSTOMER table current.",
     tags: ["Snowflake", "Snowpipe", "Streams", "Tasks", "SCD Type 1"],
     github: "https://github.com/jenniferarias414/snowflake-scd1-customer-pipeline",
-    githubLabel: "View GitHub",
+    githubLabel: "GitHub",
     caseStudyUrl: snowflakeScd1CaseStudyUrl,
-    caseStudyLabel: "View Case Study",
+    caseStudyLabel: "Case Study",
+  },
+  // Note: the `image` property is included below for future use.
+  // `ProjectCard.jsx` currently does not render images, so this
+  // won't change the card UI. Add image support in the component
+  // if you want thumbnails on cards later.
+  {
+    title: "ETL SCD Type 2 using dbt and Snowflake",
+    category: "Data Engineering",
+    categories: ["Data Engineering", "Analytics Engineering", "Cloud + Infrastructure"],
+    featured: true,
+    summary:
+      "Product dimension pipeline that loads CSV files from S3 into Snowflake and uses dbt snapshots to preserve historical product changes.",
+    tags: ["Snowflake", "dbt", "SCD Type 2", "Snapshots", "AWS S3"],
+    github: "https://github.com/jenniferarias414/etl-scd2-dbt-snowflake",
+    githubLabel: "GitHub",
+    caseStudyUrl: etlScd2CaseStudyUrl,
+    caseStudyLabel: "Case Study",
+    image: "diagrams/etl-scd2-dbt-snowflake-architecture.png",
   },
   {
     title: "Terraform Static Site Mini Project",
