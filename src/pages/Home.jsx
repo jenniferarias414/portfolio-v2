@@ -24,7 +24,7 @@ import { recentNotes } from "../data/notes.js";
 import { featuredProjects } from "../data/projects.js";
 
 const githubUrl = "https://github.com/jenniferarias414";
-const linkedinUrl = "https://www.linkedin.com/in/jennifer-arias-427851289/";
+const linkedinUrl = "https://www.linkedin.com/in/jenny-arias-427851289/";
 const resumeUrl = `${import.meta.env.BASE_URL}resume/Jenny_Arias_Data_Engineer_Resume.pdf`;
 
 const toolkitItems = [
