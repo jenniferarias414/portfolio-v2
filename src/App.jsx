@@ -10,6 +10,7 @@ import RetailDataLakeCaseStudy from "./pages/RetailDataLakeCaseStudy.jsx";
 
 const SnowflakeScd1CustomerPipelineCaseStudy = lazy(() => import("./pages/SnowflakeScd1CustomerPipelineCaseStudy.jsx"));
 const EtlScd2DbtSnowflakeCaseStudy = lazy(() => import("./pages/EtlScd2DbtSnowflakeCaseStudy.jsx"));
+const AwsDmsS3CrossRegionReplicationCaseStudy = lazy(() => import("./pages/AwsDmsS3CrossRegionReplicationCaseStudy.jsx"));
 
 const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, "");
 
@@ -49,6 +50,14 @@ function App() {
           element={
             <Suspense fallback={<main className="min-h-screen bg-[#f7f3ea]" />}>
               <EtlScd2DbtSnowflakeCaseStudy />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/case-studies/aws-dms-s3-cross-region-replication-pipeline"
+          element={
+            <Suspense fallback={<main className="min-h-screen bg-[#f7f3ea]" />}>
+              <AwsDmsS3CrossRegionReplicationCaseStudy />
             </Suspense>
           }
         />

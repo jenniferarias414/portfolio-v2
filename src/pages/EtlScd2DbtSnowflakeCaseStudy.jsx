@@ -175,8 +175,8 @@ function EtlScd2DbtSnowflakeCaseStudy() {
 
         <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {problemCards.map((card, index) => (
-            <div key={card} className="flex gap-4 rounded-2xl border border-stone-200 bg-white/75 p-5 shadow-sm">
-              <span className="flex h-7 w-7 items-center justify-center rounded-full border border-stone-300 bg-stone-100 text-xs font-semibold text-stone-500">
+            <div key={card} className="flex min-h-28 gap-4 rounded-2xl border border-stone-200 bg-white/75 p-5 shadow-sm">
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-stone-300 bg-stone-100 text-xs font-semibold text-stone-500">
                 {index + 1}
               </span>
               <p className="text-sm font-semibold leading-6 text-stone-800">{card}</p>

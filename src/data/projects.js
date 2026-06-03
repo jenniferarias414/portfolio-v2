@@ -3,6 +3,7 @@ const fraudDetectionCaseStudyUrl = `${import.meta.env.BASE_URL}case-studies/real
 const healthcareDataWarehouseCaseStudyUrl = `${import.meta.env.BASE_URL}case-studies/healthcare-data-warehouse-modernization`;
 const snowflakeScd1CaseStudyUrl = `${import.meta.env.BASE_URL}case-studies/snowflake-scd1-customer-pipeline`;
 const etlScd2CaseStudyUrl = `${import.meta.env.BASE_URL}case-studies/etl-scd2-dbt-snowflake`;
+const awsDmsS3CrossRegionReplicationCaseStudyUrl = `${import.meta.env.BASE_URL}case-studies/aws-dms-s3-cross-region-replication-pipeline`;
 
 export const projectCategories = ["All", "Data Engineering", "Analytics Engineering", "Cloud + Infrastructure", "AI + Automation", "Apps + Tools"];
 
@@ -90,6 +91,17 @@ export const projects = [
     caseStudyUrl: etlScd2CaseStudyUrl,
     caseStudyLabel: "Case Study",
     image: "diagrams/etl-scd2-dbt-snowflake-architecture.png",
+  },
+  {
+    title: "AWS DMS S3 Cross-Region Replication Pipeline",
+    category: "Data Engineering",
+    categories: ["Data Engineering", "Cloud + Infrastructure"],
+    featured: true,
+    summary:
+      "AWS pipeline using DMS, S3 events, SQS, and Lambda to replicate MySQL data files across regions.",
+    tags: ["AWS", "DMS", "S3", "Lambda", "CDC"],
+    github: "https://github.com/jenniferarias414/aws-dms-s3-cross-region-replication",
+    caseStudyUrl: awsDmsS3CrossRegionReplicationCaseStudyUrl,
   },
   {
     title: "Terraform Static Site Mini Project",
