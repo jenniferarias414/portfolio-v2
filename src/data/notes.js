@@ -41,4 +41,5 @@ export const notes = [
   },
 ];
 
+
 export const recentNotes = notes.slice(0, 3);
