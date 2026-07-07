@@ -1,5 +1,15 @@
 export const notes = [
   {
+    title: "How I’m Turning AWS/Snowflake Pipelines into a Reusable Playbook",
+    date: "2026-06-01",
+    dateLabel: "JUN 2026",
+    readTime: "5 MIN READ",
+    description:
+      "A short note on capturing the common AWS, Snowflake, and dbt pipeline steps I keep rebuilding so the next project feels more planned and less weirdly accidental.",
+    path: "#",
+    featured: true,
+  },
+  {
     title: "What Finally Clicked Building a Real-Time Streaming Pipeline",
     date: "2026-05-27",
     dateLabel: "MAY 2026",
