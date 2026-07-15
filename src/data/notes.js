@@ -1,4 +1,4 @@
-export const notes = [
+const noteData = [
   {
     title: "How I’m Turning AWS/Snowflake Pipelines into a Reusable Playbook",
     date: "2026-06-01",
@@ -61,5 +61,7 @@ export const notes = [
   },
 ];
 
+const sortedNotes = [...noteData].sort((a, b) => b.date.localeCompare(a.date));
 
-export const recentNotes = notes.slice(0, 3);
+export const notes = sortedNotes;
+export const recentNotes = sortedNotes.slice(0, 3);
