@@ -49,6 +49,16 @@ export const notes = [
     path: "#",
     featured: true,
   },
+  {
+    title: "AI at Work: Will My Job Still Be Me?",
+    date: "2026-07-10",
+    dateLabel: "JUL 2026",
+    readTime: "3 MIN READ",
+    description:
+      "My 2026 take on AI tools in the workflow, what I’m automating today, and why I’m betting the future still needs a human who understands the problem behind the prompt.",
+    path: "#",
+    featured: true,
+  },
 ];
 
 
