@@ -50,7 +50,7 @@ const noteData = [
     featured: true,
   },
   {
-    title: "AI at Work: Will My Job Still Be Me?",
+    title: "AI Tools Are Changing Jobs — Not Ending Them",
     date: "2026-07-10",
     dateLabel: "JUL 2026",
     readTime: "3 MIN READ",
