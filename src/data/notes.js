@@ -56,7 +56,7 @@ const noteData = [
     readTime: "3 MIN READ",
     description:
       "My 2026 take on AI tools in the workflow, what I’m automating today, and why I’m betting the future still needs a human who understands the problem behind the prompt.",
-    path: "#",
+    path: `${import.meta.env.BASE_URL}notes/ai-tools-changing-jobs`,
     featured: true,
   },
 ];
