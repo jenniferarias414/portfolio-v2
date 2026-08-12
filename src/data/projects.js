@@ -12,11 +12,21 @@ export const projects = [
     title: "Baggage Claim SQL Lineage Tool",
     category: "Data Engineering",
     categories: ["Data Engineering", "Apps + Tools"],
-    featured: true,
+    featured: false,
     summary:
       "Streamlit app that parses airline baggage-claims SQL and maps output columns back to source tables and columns for lineage and governance.",
     tags: ["Python", "Streamlit", "SQLGlot", "pandas", "SQL Lineage"],
     github: "https://github.com/jenniferarias414/python-automation-labs/tree/main/08_baggage_claim_sql_lineage_tool",
+  },
+  {
+    title: "GlobalPartners Restaurant Analytics Pipeline",
+    category: "Data Engineering",
+    categories: ["Data Engineering", "Analytics Engineering", "Cloud + Infrastructure"],
+    featured: true,
+    summary:
+      "End-to-end AWS pipeline that transforms SQL Server restaurant data through S3 medallion layers and AWS Glue, then serves validated Athena metrics in Streamlit.",
+    tags: ["AWS", "SQL Server", "PySpark", "Athena", "Streamlit"],
+    github: "https://github.com/jenniferarias414/globalpartners-business-analysis",
   },
   {
     title: "Retail Data Lake System Design",
