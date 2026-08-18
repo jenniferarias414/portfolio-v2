@@ -34,7 +34,7 @@ export const projects = [
     categories: ["Data Engineering", "Analytics Engineering", "Cloud + Infrastructure"],
     featured: true,
     summary:
-      "Scheduled AWS pipeline that ingests Wistia video analytics with pagination and incremental checkpointing, transforms engagement events with Glue and PySpark, and queries a curated dimensional model with Athena.",
+      "Scheduled incremental AWS pipeline that ingests Wistia video analytics with pagination, transforms engagement events with Glue and PySpark, and queries a curated dimensional model with Athena.",
     tags: ["API Ingestion", "AWS", "PySpark", "Athena", "Analytics"],
     github: "https://github.com/jenniferarias414/wistia-video-analytics-pipeline",
   },
