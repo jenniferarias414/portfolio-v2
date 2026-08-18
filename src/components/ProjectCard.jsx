@@ -44,7 +44,7 @@ function ProjectCard({ project, index = 0, peekProject }) {
       <h3 className="text-xl font-semibold tracking-tight text-stone-950">{project.title}</h3>
       <p className="mt-3 text-sm leading-6 text-stone-600">{project.summary}</p>
       <div className="mt-5 flex flex-wrap gap-2">
-        {project.tags.map((tag) => (
+        {(project.displayTags ?? project.tags).map((tag) => (
           <span key={tag} className="rounded-full border border-stone-200 bg-stone-50 px-3 py-1 text-xs font-medium text-stone-600">
             {tag}
           </span>
