@@ -21,12 +21,22 @@ export const projects = [
   {
     title: "GlobalPartners Restaurant Analytics Pipeline",
     category: "Data Engineering",
-    categories: ["Data Engineering", "Analytics Engineering", "Cloud + Infrastructure"],
+    categories: ["Data Engineering", "Analytics Engineering", "Cloud + Infrastructure", "Apps + Tools"],
     featured: true,
     summary:
       "End-to-end AWS pipeline that transforms SQL Server restaurant data through S3 medallion layers and AWS Glue, then serves validated Athena metrics in Streamlit.",
     tags: ["AWS", "SQL Server", "PySpark", "Athena", "Streamlit"],
     github: "https://github.com/jenniferarias414/globalpartners-business-analysis",
+  },
+  {
+    title: "Healthcare Staffing Metrics Pipeline",
+    category: "Data Engineering",
+    categories: ["Data Engineering", "Analytics Engineering", "Cloud + Infrastructure", "Apps + Tools"],
+    featured: true,
+    summary:
+      "AWS healthcare staffing analytics pipeline that ingests PBJ staffing data from nursing facilities, calculates nursing productivity and utilization metrics, and presents the results in a Streamlit dashboard.",
+    tags: ["AWS", "PySpark", "Athena", "Healthcare", "Streamlit"],
+    github: "https://github.com/jenniferarias414/healthcare-staffing-metrics-pipeline",
   },
   {
     title: "Wistia Video Analytics Pipeline",
